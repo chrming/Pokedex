@@ -1,6 +1,6 @@
 package com.example.pokedex.network.model.pokemon
 
-import com.example.pokedex.network.model.*
+import com.example.pokedex.network.model.pokemonAtributes.*
 
 data class Pokemon(
     val abilities: List<Ability>,

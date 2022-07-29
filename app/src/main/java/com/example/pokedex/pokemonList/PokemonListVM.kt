@@ -1,10 +1,12 @@
 package com.example.pokedex.pokemonList
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pokedex.network.model.pokemon.Pokemon
 import com.example.pokedex.pokemonList.state.PokemonListState
 import com.example.pokedex.pokemonList.useCase.PokemonListUseCaseWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,8 +34,14 @@ class PokemonListVM @Inject constructor(
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             try {
-                val pokemonList = useCase.getPokemonList()
+                val pokemonResponseList = useCase.getPokemonList()
+                val pokemonList = mutableListOf<Pokemon>()
+                for (pokemon in pokemonResponseList.results) {
+                    pokemonList.add(useCase.getPokemonListItem(pokemon.url.drop(34)))
+                    //TODO change 34 to length of BASE_URL
+                }
                 pokemonListState = pokemonListState.copy(pokemonList = pokemonList)
+                //TODO what if response is null
             } catch (ioe: IOException) {
                 //Handle error
             }
