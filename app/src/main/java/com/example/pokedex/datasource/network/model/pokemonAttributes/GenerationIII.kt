@@ -3,10 +3,10 @@ package com.example.pokedex.datasource.network.model.pokemonAttributes
 import androidx.room.Embedded
 
 data class GenerationIII(
-    @Embedded
+    @Embedded(prefix = "emerald_")
     val emerald: Emerald,
-    @Embedded
+    @Embedded(prefix = "firered_leafgreen_")
     val fireredLeafgreen: EditionGenIII,
-    @Embedded
+    @Embedded(prefix = "ruby_sapphire_")
     val rubySapphire: EditionGenIII
 )

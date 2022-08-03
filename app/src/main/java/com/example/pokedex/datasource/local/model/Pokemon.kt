@@ -27,7 +27,7 @@ data class Pokemon(
     val order: Int,
     @Embedded
     val past_types: List<PastType>,
-    @Embedded
+    @Embedded(prefix = "species_")
     val species: Attribute,
     @Embedded
     val sprites: Sprites,

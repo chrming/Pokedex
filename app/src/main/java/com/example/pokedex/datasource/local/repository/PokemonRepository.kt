@@ -12,10 +12,18 @@ class PokemonRepository @Inject constructor(private val dao: PokemonDao): IPokem
     }
 
     override suspend fun getPokemonListItem(url: String): Pokemon {
-        return dao.getPokemonListItem(url = url)
+        return dao.getPokemonListItem(idOrName = url)
     }
 
     override suspend fun getPokemon(id: Int): PokemonForUi {
         return dao.getPokemon(id)
+    }
+
+    override suspend fun insertPokemon(pokemon: Pokemon) {
+        dao.insertPokemon(pokemon)
+    }
+
+    override suspend fun deletePokemon(pokemon: Pokemon) {
+        dao.deletePokemon(pokemon)
     }
 }

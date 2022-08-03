@@ -2,15 +2,15 @@ package com.example.pokedex.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.pokedex.datasource.local.PokemonDao
 import com.example.pokedex.datasource.local.PokemonDatabase
 import com.example.pokedex.datasource.local.repository.IPokemonRepository
 import com.example.pokedex.datasource.local.repository.PokemonRepository
-import com.example.pokedex.datasource.network.repository.IApiPokemonRepository
-import com.example.pokedex.datasource.network.repository.ApiPokemonRepository
 import com.example.pokedex.datasource.network.PokemonApi
+import com.example.pokedex.datasource.network.repository.ApiPokemonRepository
+import com.example.pokedex.datasource.network.repository.IApiPokemonRepository
 import com.example.pokedex.pokemonList.domain.useCase.GetPokemonListItemUseCase
 import com.example.pokedex.pokemonList.domain.useCase.GetPokemonListUseCase
+import com.example.pokedex.pokemonList.domain.useCase.InsertPokemonUseCase
 import com.example.pokedex.pokemonList.domain.useCase.PokemonListUseCaseWrapper
 import dagger.Module
 import dagger.Provides
@@ -28,7 +28,7 @@ class AppModule {
     @Singleton
     fun providePokemonApi(): PokemonApi {
         return Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/",)
+            .baseUrl("https://pokeapi.co/api/v2/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(PokemonApi::class.java)
@@ -42,22 +42,26 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providePokemonReposotory(dao: PokemonDao): IPokemonRepository {
-        return PokemonRepository(dao)
+    fun providePokemonRepository(db: PokemonDatabase): IPokemonRepository {
+        return PokemonRepository(db.pokemonDao())
     }
 
     @Provides
     @Singleton
-    fun providePokemonListUseCaseWrapper(apiRepo: IApiPokemonRepository, localRepo: IPokemonRepository): PokemonListUseCaseWrapper {
+    fun providePokemonListUseCaseWrapper(
+        apiRepo: IApiPokemonRepository,
+        localRepo: IPokemonRepository
+    ): PokemonListUseCaseWrapper {
         return PokemonListUseCaseWrapper(
             getPokemonList = GetPokemonListUseCase(apiRepo, localRepo),
-            getPokemonListItem = GetPokemonListItemUseCase(apiRepo, localRepo)
+            getPokemonListItem = GetPokemonListItemUseCase(apiRepo, localRepo),
+            insertPokemon = InsertPokemonUseCase(localRepo)
         )
     }
 
     @Provides
     @Singleton
-    fun providePokemonDatabase(app: Application): PokemonDatabase{
+    fun providePokemonDatabase(app: Application): PokemonDatabase {
         return Room.databaseBuilder(
             app,
             PokemonDatabase::class.java,

@@ -17,7 +17,7 @@ fun PokemonListItem(modifier: Modifier = Modifier, spriteUrl: String, name: Stri
         modifier = modifier,
         backgroundColor = backgroundColor(type)
     ) {
-        Column() {
+        Column {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(spriteUrl)

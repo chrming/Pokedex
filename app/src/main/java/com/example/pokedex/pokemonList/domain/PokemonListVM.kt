@@ -38,6 +38,7 @@ class PokemonListVM @Inject constructor(
                 for (pokemon in pokemonResponseList.results) {
                     pokemonList.add(useCase.getPokemonListItem(pokemon.url.drop(34)))
                     //TODO change 34 to length of BASE_URL
+
                 }
                 pokemonListState = pokemonListState.copy(pokemonList = pokemonList)
                 //TODO what if response is null

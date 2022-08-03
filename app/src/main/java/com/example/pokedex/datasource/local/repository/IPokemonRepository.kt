@@ -8,4 +8,6 @@ interface IPokemonRepository {
     suspend fun getPokemonList(): PokemonListResponse
     suspend fun getPokemonListItem(url: String): Pokemon
     suspend fun getPokemon(id: Int): PokemonForUi
+    suspend fun insertPokemon(pokemon: Pokemon): Unit
+    suspend fun deletePokemon(pokemon: Pokemon):Unit
 }

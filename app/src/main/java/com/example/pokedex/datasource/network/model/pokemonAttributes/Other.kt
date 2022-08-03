@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class Other(
     @Embedded
     val dream_world: DreamWorld,
-    @Embedded
+    @Embedded(prefix = "home_")
     val home: Home,
     @Embedded
     @SerializedName("official-artwork")

@@ -10,21 +10,21 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.pokedex.datasource.network.model.pokemon.Pokemon
+import com.example.pokedex.datasource.local.model.Pokemon
 import com.example.pokedex.pokemonList.util.PokemonTypeList
 
 @Composable
 fun PokemonVerticalGrid(modifier: Modifier = Modifier, pokemonList: List<Pokemon>) {
     // filter by type with horizontal lazy list
     Column(modifier = modifier) {
-        LazyRow() {
+        LazyRow {
             items(PokemonTypeList) { pokemon ->
                 PokemonListItem(
                     modifier = Modifier
                         .padding(4.dp),
                     spriteUrl = pokemon.spriteUrl,
                     name = pokemon.type.name,
-                    typeX = pokemon.type
+                    type = pokemon.type
                 )
             }
         }
@@ -37,7 +37,7 @@ fun PokemonVerticalGrid(modifier: Modifier = Modifier, pokemonList: List<Pokemon
                         .padding(4.dp),
                     spriteUrl = pokemon.sprites.other.officialArtwork.front_default,
                     name = pokemon.name,
-                    typeX = pokemon.types[1].type
+                    type = pokemon.types[1].type
                 )
             }
         }

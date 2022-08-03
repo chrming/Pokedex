@@ -8,7 +8,7 @@ plugins {
 android {
     compileSdk 32
 
-    buildFeatures{
+    buildFeatures {
         compose true
     }
 
@@ -26,6 +26,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
+        }
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
         }
     }
 
@@ -71,6 +76,7 @@ dependencies {
     // Room
     implementation "androidx.room:room-runtime:2.4.3"
     kapt "androidx.room:room-compiler:2.4.3"
+    implementation "androidx.room:room-ktx:2.4.3"
 
     // Dagger - Hilt
     implementation 'com.google.dagger:hilt-android:2.43.1'

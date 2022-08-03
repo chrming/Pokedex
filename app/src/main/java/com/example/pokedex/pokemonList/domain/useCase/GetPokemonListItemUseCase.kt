@@ -7,11 +7,11 @@ import java.io.IOException
 
 class GetPokemonListItemUseCase(private val apiRepo: IApiPokemonRepository, private val localRepo: IPokemonRepository) {
     @Throws(IOException::class)
-    suspend operator fun invoke(url: String): Pokemon {
-        localRepo.getPokemonListItem(url)?.let {
+    suspend operator fun invoke(idOrName: String): Pokemon {
+        localRepo.getPokemonListItem(idOrName)?.let {
             return it
         }
-        apiRepo.getPokemonListItem(url).body()?.let {
+        apiRepo.getPokemonListItem(idOrName).body()?.let {
             return it
         }
         throw IOException("Pokemon is null")

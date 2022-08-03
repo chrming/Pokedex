@@ -7,11 +7,11 @@ import java.io.IOException
 
 class GetPokemonListUseCase(
     private val apiRepo: IApiPokemonRepository,
-    private val repo: IPokemonRepository
+    private val localRepo: IPokemonRepository
 ) {
     @Throws(IOException::class)
     suspend operator fun invoke(): PokemonListResponse {
-        repo.getPokemonList()?.let {
+        localRepo.getPokemonList()?.let {
             return it
         }
         apiRepo.getPokemonList().body()?.let {
