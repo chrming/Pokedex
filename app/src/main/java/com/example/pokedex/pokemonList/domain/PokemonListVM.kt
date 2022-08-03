@@ -33,15 +33,7 @@ class PokemonListVM @Inject constructor(
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             try {
-                val pokemonResponseList = useCase.getPokemonList()
-                val pokemonList = mutableListOf<Pokemon>()
-                for (pokemon in pokemonResponseList.results) {
-                    pokemonList.add(useCase.getPokemonListItem(pokemon.url.drop(34)))
-                    //TODO change 34 to length of BASE_URL
-
-                }
-                pokemonListState = pokemonListState.copy(pokemonList = pokemonList)
-                //TODO what if response is null
+                pokemonListState = pokemonListState.copy(pokemonList = useCase.getPokemonList())
             } catch (ioe: IOException) {
                 //Handle error
             }

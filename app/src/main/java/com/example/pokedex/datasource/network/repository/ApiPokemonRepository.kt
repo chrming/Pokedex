@@ -8,14 +8,11 @@ import javax.inject.Inject
 
 class ApiPokemonRepository @Inject constructor(private val api: PokemonApi) : IApiPokemonRepository {
     override suspend fun getPokemonList(): Response<PokemonListResponse> {
-        return api.getPokemonList()
+        return api.getPokemonResponse()
     }
 
-    override suspend fun getPokemonListItem(url: String): Response<Pokemon> {
-        return api.getPokemonListItem(url = url)
-    }
 
-    override suspend fun getPokemon(id: Int): Response<Pokemon> {
-        return api.getPokemon(id)
+    override suspend fun getPokemon(idOrName: String): Response<Pokemon> {
+        return api.getPokemon(idOrName)
     }
 }

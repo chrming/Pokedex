@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.pokedex.datasource.local.model.Pokemon
-import com.example.pokedex.pokemonList.util.PokemonTypeList
+import com.example.pokedex.pokemonList.util.pokemonTypes.PokemonTypeList
 
 @Composable
 fun PokemonVerticalGrid(modifier: Modifier = Modifier, pokemonList: List<Pokemon>) {

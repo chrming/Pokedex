@@ -2,6 +2,7 @@ package com.example.pokedex.pokemonList.domain.useCase
 
 data class PokemonListUseCaseWrapper(
     val getPokemonList: GetPokemonListUseCase,
-    val getPokemonListItem: GetPokemonListItemUseCase,
-    val insertPokemon: InsertPokemonUseCase
+    val getPokemon: GetPokemonUseCase,
+    val insertPokemon: InsertPokemonUseCase,
+    val deletePokemonUseCase: DeletePokemonUseCase
 )

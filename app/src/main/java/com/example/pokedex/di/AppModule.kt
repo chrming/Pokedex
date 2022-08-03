@@ -2,16 +2,13 @@ package com.example.pokedex.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.pokedex.datasource.local.PokemonDatabase
+import com.example.pokedex.datasource.local.db.PokemonDatabase
 import com.example.pokedex.datasource.local.repository.IPokemonRepository
 import com.example.pokedex.datasource.local.repository.PokemonRepository
 import com.example.pokedex.datasource.network.PokemonApi
 import com.example.pokedex.datasource.network.repository.ApiPokemonRepository
 import com.example.pokedex.datasource.network.repository.IApiPokemonRepository
-import com.example.pokedex.pokemonList.domain.useCase.GetPokemonListItemUseCase
-import com.example.pokedex.pokemonList.domain.useCase.GetPokemonListUseCase
-import com.example.pokedex.pokemonList.domain.useCase.InsertPokemonUseCase
-import com.example.pokedex.pokemonList.domain.useCase.PokemonListUseCaseWrapper
+import com.example.pokedex.pokemonList.domain.useCase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,8 +51,9 @@ class AppModule {
     ): PokemonListUseCaseWrapper {
         return PokemonListUseCaseWrapper(
             getPokemonList = GetPokemonListUseCase(apiRepo, localRepo),
-            getPokemonListItem = GetPokemonListItemUseCase(apiRepo, localRepo),
-            insertPokemon = InsertPokemonUseCase(localRepo)
+            getPokemon = GetPokemonUseCase(apiRepo, localRepo),
+            insertPokemon = InsertPokemonUseCase(localRepo),
+            deletePokemonUseCase = DeletePokemonUseCase(localRepo)
         )
     }
 

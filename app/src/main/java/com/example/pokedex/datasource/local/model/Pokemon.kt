@@ -1,11 +1,10 @@
 package com.example.pokedex.datasource.local.model
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.example.pokedex.datasource.network.model.pokemonAttributes.*
 
 @Entity
+@TypeConverters
 data class Pokemon(
     @Embedded
     val abilities: List<Ability>,

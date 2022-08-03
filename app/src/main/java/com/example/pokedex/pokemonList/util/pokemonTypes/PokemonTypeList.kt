@@ -1,4 +1,4 @@
-package com.example.pokedex.pokemonList.util
+package com.example.pokedex.pokemonList.util.pokemonTypes
 
 import com.example.pokedex.datasource.network.model.pokemonAttributes.Attribute
 
