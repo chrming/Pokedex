@@ -1,6 +1,6 @@
 package com.example.pokedex.pokemonList.util.pokemonTypes
 
-import com.example.pokedex.datasource.network.model.pokemonAttributes.Attribute
+import com.example.pokedex.datasource.local.model.pokemonAttributes.Attribute
 
 
 val PokemonTypeList: List<PokemonType> = listOf(

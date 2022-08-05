@@ -2,8 +2,6 @@ package com.example.pokedex.datasource.local.repository
 
 import com.example.pokedex.datasource.local.db.PokemonDao
 import com.example.pokedex.datasource.local.model.Pokemon
-import com.example.pokedex.datasource.local.model.PokemonForUi
-import com.example.pokedex.datasource.network.model.pokemon.PokemonListResponse
 import javax.inject.Inject
 
 class PokemonRepository @Inject constructor(private val dao: PokemonDao): IPokemonRepository{

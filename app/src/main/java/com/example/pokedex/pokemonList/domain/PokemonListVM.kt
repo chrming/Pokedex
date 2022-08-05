@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokedex.datasource.local.model.Pokemon
 import com.example.pokedex.pokemonList.domain.state.PokemonListState
 import com.example.pokedex.pokemonList.domain.useCase.PokemonListUseCaseWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel

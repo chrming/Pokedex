@@ -3,6 +3,7 @@ package com.example.pokedex.di
 import android.app.Application
 import androidx.room.Room
 import com.example.pokedex.datasource.local.db.PokemonDatabase
+import com.example.pokedex.datasource.local.model.AttributesTypeConverter
 import com.example.pokedex.datasource.local.repository.IPokemonRepository
 import com.example.pokedex.datasource.local.repository.PokemonRepository
 import com.example.pokedex.datasource.network.PokemonApi
@@ -64,6 +65,7 @@ class AppModule {
             app,
             PokemonDatabase::class.java,
             PokemonDatabase.DATABASE_NAME
-        ).build()
+        ).addTypeConverter(AttributesTypeConverter())
+            .build()
     }
 }

@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.pokedex.datasource.network.model.pokemonAttributes.Attribute
+import com.example.pokedex.datasource.local.model.pokemonAttributes.Attribute
 
 @Composable
 fun PokemonListItem(modifier: Modifier = Modifier, spriteUrl: String, name: String, type: Attribute) {
