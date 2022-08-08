@@ -12,7 +12,7 @@ interface PokemonDao {
     @Query("SELECT * FROM pokemon")
     suspend fun getPokemonList(): List<Pokemon>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(entity = Pokemon::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPokemon(pokemon: Pokemon)
 
     @Delete

@@ -10,4 +10,6 @@ interface IApiPokemonRepository {
 
     // Return a Pokemon object after given id
     suspend fun getPokemon(idOrName: String): Response<Pokemon>
+
+    suspend fun getPokemonById(id: Int): Response<Pokemon>
 }

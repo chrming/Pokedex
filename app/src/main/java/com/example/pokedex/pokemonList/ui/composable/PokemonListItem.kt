@@ -6,25 +6,36 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.example.pokedex.datasource.local.model.pokemonAttributes.Attribute
 
+@Preview
 @Composable
-fun PokemonListItem(modifier: Modifier = Modifier, spriteUrl: String, name: String, type: Attribute) {
+fun PreviewPokemonListItem() {
+    PokemonListItem(
+        spriteUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png",
+        name = "Arbok",
+        type = Attribute("poison", "https://pokeapi.co/api/v2/type/4/")
+    )
+}
+
+@Composable
+fun PokemonListItem(
+    modifier: Modifier = Modifier,
+    spriteUrl: String,
+    name: String,
+    type: Attribute
+) {
     Card(
         modifier = modifier,
         backgroundColor = backgroundColor(type)
     ) {
         Column {
             AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(spriteUrl)
-                    .build(),
-                contentDescription = "Image of $name",
-
-                )
+                model = spriteUrl,
+                contentDescription = null
+            )
             Text(text = name)
         }
     }

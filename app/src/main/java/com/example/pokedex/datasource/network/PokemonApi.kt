@@ -12,7 +12,9 @@ interface PokemonApi {
     suspend fun getPokemonResponse(): Response<PokemonListResponse>
 
     @GET("pokemon/{idOrName}")
-    suspend fun getPokemon(@Path("id") idOrName: String): Response<Pokemon>
+    suspend fun getPokemon(@Path("idOrName") idOrName: String): Response<Pokemon>
 
+    @GET("pokemon/{id}")
+    suspend fun getPokemonById(@Path("id") id: Int): Response<Pokemon>
     //@GET("pokemon-form")
 }

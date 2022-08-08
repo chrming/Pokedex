@@ -1,5 +1,6 @@
 package com.example.pokedex.pokemonList
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,9 +13,13 @@ fun PokemonListScreen(
     viewModel: PokemonListVM = hiltViewModel()
 ) {
     val pokemonListState = viewModel.pokemonListState
-    PokemonVerticalGrid(
-        modifier = Modifier
-            .fillMaxSize(),
-        pokemonList = pokemonListState.pokemonList
-    )
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        //SelectTypeLazyRow()
+        PokemonVerticalGrid(
+            modifier = Modifier,
+            pokemonList = pokemonListState.pokemonList
+        )
+    }
 }

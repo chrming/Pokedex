@@ -6,13 +6,17 @@ import com.example.pokedex.datasource.network.model.pokemon.PokemonListResponse
 import retrofit2.Response
 import javax.inject.Inject
 
-class ApiPokemonRepository @Inject constructor(private val api: PokemonApi) : IApiPokemonRepository {
+class ApiPokemonRepository @Inject constructor(private val api: PokemonApi) :
+    IApiPokemonRepository {
     override suspend fun getPokemonList(): Response<PokemonListResponse> {
         return api.getPokemonResponse()
     }
 
-
     override suspend fun getPokemon(idOrName: String): Response<Pokemon> {
         return api.getPokemon(idOrName)
+    }
+
+    override suspend fun getPokemonById(id: Int): Response<Pokemon> {
+       return api.getPokemonById(id)
     }
 }

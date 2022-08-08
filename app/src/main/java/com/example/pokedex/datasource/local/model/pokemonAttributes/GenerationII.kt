@@ -4,7 +4,7 @@ import androidx.room.Embedded
 
 data class GenerationII(
     @Embedded(prefix = "crystal_")
-    val crystal: EditionGenII,
+    val crystal: Crystal,
     @Embedded(prefix = "gold_")
     val gold: EditionGenII,
     @Embedded(prefix = "silver_")

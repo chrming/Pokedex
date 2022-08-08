@@ -11,6 +11,20 @@ class AttributesTypeConverter {
 
     val gson = Gson()
 
+    /*
+    // Type converter for Any
+    @TypeConverter
+    fun anyToString(data: Any): String {
+        return gson.toJson(data)
+    }
+
+    @TypeConverter
+    fun stringToAny(data: String): Any {
+        val anyType = object : TypeToken<Any>() {}.type
+        return gson.fromJson(data, anyType)
+    }
+*/
+
     // Type converter for Type
     @TypeConverter
     fun typeToString(data: List<Type>): String {
