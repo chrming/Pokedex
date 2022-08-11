@@ -1,14 +1,18 @@
 package com.example.pokedex.pokemonList.ui.composable
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.example.pokedex.datasource.local.model.pokemonAttributes.Attribute
+import kotlin.math.absoluteValue
 
 @Preview
 @Composable
@@ -25,7 +29,8 @@ fun PokemonListItem(
     modifier: Modifier = Modifier,
     spriteUrl: String,
     name: String,
-    type: Attribute
+    type: Attribute,
+    state: LazyListState = LazyListState()
 ) {
     Card(
         modifier = modifier,

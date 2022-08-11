@@ -4,6 +4,7 @@ import com.example.pokedex.datasource.local.model.pokemonAttributes.Attribute
 
 
 val PokemonTypeList: List<PokemonType> = listOf(
+
     PokemonType(
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/16.png",
         Attribute("normal", "https://pokeapi.co/api/v2/type/1/")
