@@ -13,4 +13,6 @@ data class BlackWhite(
     val front_female: String?,
     val front_shiny: String?,
     val front_shiny_female: String?
-)
+) {
+    constructor() : this(Animated(), "None", "None", "None", "None", "None", "None", "None", "None")
+}

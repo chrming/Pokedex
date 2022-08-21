@@ -9,4 +9,6 @@ data class Crystal(
     val front_shiny: String?,
     val front_shiny_transparent: String?,
     val front_transparent: String?
-)
+) {
+    constructor() : this("None", "None", "None", "None", "None", "None", "None", "None")
+}

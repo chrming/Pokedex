@@ -9,4 +9,6 @@ data class Animated(
     val front_female: String?,
     val front_shiny: String?,
     val front_shiny_female: String?
-)
+){
+    constructor(): this("None","None","None","None","None","None","None", "None")
+}

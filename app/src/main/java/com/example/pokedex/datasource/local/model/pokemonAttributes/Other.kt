@@ -11,4 +11,6 @@ data class Other(
     @Embedded(prefix = "official_artwork_")
     @SerializedName("official-artwork")
     val officialArtwork: OfficialArtwork
-)
+) {
+    constructor() : this(DreamWorld(), Home(), OfficialArtwork("None"))
+}

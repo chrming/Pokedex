@@ -9,4 +9,6 @@ data class GenerationVII(
     @Embedded(prefix = "ulstrasun_ultramoon_")
     @SerializedName("ultra-sun-ultra-moon")
     val ultraSunUltraMoon: EditionGenVII
-)
+){
+    constructor():this(Icons(), EditionGenVII())
+}

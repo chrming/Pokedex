@@ -9,4 +9,6 @@ data class GenerationI(
     val redBlue: EditionGenI,
     @Embedded(prefix = "yellow_")
     val yellow: EditionGenI
-)
+) {
+    constructor() : this(EditionGenI(), EditionGenI())
+}

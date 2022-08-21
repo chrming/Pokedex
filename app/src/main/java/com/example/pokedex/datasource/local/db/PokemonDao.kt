@@ -2,6 +2,7 @@ package com.example.pokedex.datasource.local.db
 
 import androidx.room.*
 import com.example.pokedex.datasource.local.model.Pokemon
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PokemonDao {
@@ -10,7 +11,10 @@ interface PokemonDao {
     suspend fun getPokemon(idOrName: String): Pokemon
 
     @Query("SELECT * FROM pokemon")
-    suspend fun getPokemonList(): List<Pokemon>
+    fun getPokemonList(): Flow<List<Pokemon>>
+
+    @Query("SELECT * FROM pokemon")
+    fun isDatabaseEmpty(): List<Pokemon>
 
     @Insert(entity = Pokemon::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPokemon(pokemon: Pokemon)

@@ -12,4 +12,6 @@ data class GenerationIV(
     val heartgoldSoulsilver: EditionGenIV,
     @Embedded(prefix = "platinum_")
     val platinum: EditionGenIV
-)
+){
+    constructor(): this(EditionGenIV(), EditionGenIV(), EditionGenIV())
+}

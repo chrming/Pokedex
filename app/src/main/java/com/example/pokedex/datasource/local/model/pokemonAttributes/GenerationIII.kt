@@ -12,4 +12,6 @@ data class GenerationIII(
     @Embedded(prefix = "ruby_sapphire_")
     @SerializedName("ruby-sapphire")
     val rubySapphire: EditionGenIII
-)
+) {
+    constructor() : this(Emerald(), EditionGenIII(), EditionGenIII())
+}

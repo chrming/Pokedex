@@ -10,4 +10,6 @@ data class GenerationVI(
     @Embedded(prefix = "xy_")
     @SerializedName("x-y")
     val xy: EditionGenVI
-)
+){
+    constructor(): this(EditionGenVI(), EditionGenVI())
+}

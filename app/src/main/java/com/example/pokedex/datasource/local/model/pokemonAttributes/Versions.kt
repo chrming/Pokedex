@@ -28,4 +28,15 @@ data class Versions(
     @Embedded
     @SerializedName("generation-viii")
     val generationVIII: GenerationVIII
-)
+) {
+    constructor() : this(
+        GenerationI(),
+        GenerationII(),
+        GenerationIII(),
+        GenerationIV(),
+        GenerationV(),
+        GenerationVI(),
+        GenerationVII(),
+        GenerationVIII()
+    )
+}

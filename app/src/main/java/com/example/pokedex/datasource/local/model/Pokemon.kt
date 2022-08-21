@@ -30,4 +30,25 @@ data class Pokemon(
     val stats: List<Stat>,
     val types: List<Type>,
     val weight: Int
-)
+) {
+    constructor() : this(
+        abilities = emptyList(),
+        base_experience = -1,
+        forms = emptyList(),
+        game_indices = emptyList(),
+        height = -1,
+        held_items = emptyList(),
+        id = -1,
+        is_default = false,
+        location_area_encounters = "None",
+        moves = emptyList(),
+        name = "None",
+        order = -1,
+        past_types = emptyList(),
+        species = Attribute("None", "None"),
+        sprites = Sprites(),
+        stats = emptyList(),
+        types = emptyList(),
+        weight = -1
+    )
+}

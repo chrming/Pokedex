@@ -9,4 +9,6 @@ data class GenerationII(
     val gold: EditionGenII,
     @Embedded(prefix = "silver_")
     val silver: EditionGenII
-)
+) {
+    constructor() : this(Crystal(), EditionGenII(), EditionGenII())
+}

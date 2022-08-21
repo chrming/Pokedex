@@ -7,4 +7,6 @@ data class GenerationV(
     @Embedded(prefix = "balckwhite_")
     @SerializedName("black-white")
     val blackWhite: BlackWhite
-)
+){
+    constructor(): this(BlackWhite())
+}

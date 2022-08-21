@@ -7,5 +7,6 @@ data class EditionGenI(
     val front_default: String?,
     val front_gray: String?,
     val front_transparent: String?
-
-)
+) {
+    constructor() : this("None","None","None","None","None","None")
+}

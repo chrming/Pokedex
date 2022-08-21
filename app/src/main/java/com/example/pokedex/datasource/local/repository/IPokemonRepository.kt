@@ -1,9 +1,11 @@
 package com.example.pokedex.datasource.local.repository
 
 import com.example.pokedex.datasource.local.model.Pokemon
+import kotlinx.coroutines.flow.Flow
 
 interface IPokemonRepository {
-    suspend fun getPokemonList(): List<Pokemon>
+    fun getPokemonList(): Flow<List<Pokemon>>
+    fun isDatabaseEmpty(): List<Pokemon>
     suspend fun getPokemon(idOrName: String): Pokemon
     suspend fun insertPokemon(pokemon: Pokemon)
     suspend fun deletePokemon(pokemon: Pokemon)
