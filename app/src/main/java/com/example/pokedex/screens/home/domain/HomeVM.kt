@@ -3,10 +3,7 @@ package com.example.pokedex.screens.home.domain
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.pokedex.datasource.local.model.Pokemon
 import com.example.pokedex.navigation.PokemonDetailScreenNavArgs
-import com.example.pokedex.screens.destinations.PokemonDetailScreenDestination
 import com.example.pokedex.screens.home.domain.state.PokemonState
 import com.example.pokedex.screens.home.domain.useCase.HomeUseCaseWrapper
 import com.example.pokedex.screens.navArgs
@@ -25,7 +22,7 @@ class HomeVM @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    val pokemonIdOrName: PokemonDetailScreenNavArgs = savedStateHandle.navArgs()
+    private val pokemonIdOrName: PokemonDetailScreenNavArgs = savedStateHandle.navArgs()
 
     private val _pokemonState = mutableStateOf(PokemonState())
     val pokemonState = _pokemonState

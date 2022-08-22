@@ -32,7 +32,7 @@ fun PokemonListItem(
 ) {
     Card(
         modifier = modifier,
-        backgroundColor = backgroundColor(type),
+        backgroundColor = backgroundColorByType(type.name),
         onClick = onClick
     ) {
         Column {
@@ -45,16 +45,17 @@ fun PokemonListItem(
     }
 }
 
-fun backgroundColor(pokemonType: Attribute): Color {
-    val backgroundColor: Color = when (pokemonType.name) {
+fun backgroundColorByType(pokemonType: String): Color {
+    val backgroundColor: Color = when (pokemonType) {
         "fighting" -> {
-            Color(113, 53, 50) //rgb(94, 44, 42))
+            Color(113, 53, 50)
+            //Color(94, 44, 42)
         }
         "flying" -> {
             Color(38, 26, 76)//, rgb(66, 59, 90))
         }
         "poison" -> {
-            Color(226, 225, 223)//, rgb(85, 53, 85))
+            Color(104, 64, 104)//, rgb(85, 53, 85))
         }
         "ground" -> {
             Color(92, 82, 51)//, rgb(114, 101, 62))
