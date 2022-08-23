@@ -6,12 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokedex.screens.pokemonList.domain.state.FilterState
-import com.example.pokedex.screens.pokemonList.domain.state.PokemonListState
 import com.example.pokedex.screens.pokemonList.domain.useCase.PokemonListUseCaseWrapper
-import com.example.pokedex.screens.pokemonList.ui.composable.filter.FilterExpanded
-import com.example.pokedex.screens.pokemonList.ui.composable.filter.FilterNames
-import com.example.pokedex.screens.pokemonList.util.pokemonFilters.Filter
+import com.example.pokedex.screens.pokemonList.presentation.event.PokemonListEvent
+import com.example.pokedex.screens.pokemonList.presentation.state.FilterState
+import com.example.pokedex.screens.pokemonList.presentation.state.PokemonListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
@@ -24,12 +22,10 @@ class PokemonListVM @Inject constructor(
     private val useCase: PokemonListUseCaseWrapper
 ) : ViewModel() {
 
-    private val _pokemonListState = mutableStateOf(PokemonListState())
-    val pokemonListState = _pokemonListState
-
+    var pokemonListState by mutableStateOf(PokemonListState())
+        private set
     var pokemonGridState by mutableStateOf(LazyGridState())
         private set
-
     var filterState by mutableStateOf(FilterState())
         private set
 
@@ -41,26 +37,30 @@ class PokemonListVM @Inject constructor(
 
     fun onEvent(event: PokemonListEvent) {
         when (event) {
-            is PokemonListEvent.FilterEvent.FilterBy -> {
-                filterState = when (event.filter) {
-                    Filter.Type -> {
-                        filterState.copy(filterNames = FilterNames(type = event.filterName))
-                    }
-                    Filter.Version -> {
-                        filterState.copy(filterNames = FilterNames(version = event.filterName))
-                    }
-                }
+            is PokemonListEvent.FilterEvent.Version.FilterExpanded -> {
+                filterState =
+                    filterState.copy(
+                        filterExpanded = filterState.filterExpanded.copy(
+                            versionIsExpanded = event.expanded
+                        )
+                    )
             }
-            is PokemonListEvent.FilterEvent.FilterExpanded -> {
-                filterState = when (event.filterType) {
-                    Filter.Type -> {
-                        filterState.copy(filterExpanded = FilterExpanded(typeIsExpanded = !filterState.filterExpanded.typeIsExpanded))
-                    }
-                    Filter.Version -> {
-                        filterState.copy(filterExpanded = FilterExpanded(versionIsExpanded = !filterState.filterExpanded.versionIsExpanded))
-                    }
+            is PokemonListEvent.FilterEvent.Version.FilterSelected -> {
+                filterState =
+                    filterState.copy(filterNames = filterState.filterNames.copy(version = event.filterName))
+            }
+            is PokemonListEvent.FilterEvent.Type.FilterExpanded -> {
+                filterState =
+                    filterState.copy(filterExpanded = filterState.filterExpanded.copy(typeIsExpanded = event.expanded))
+            }
+            is PokemonListEvent.FilterEvent.Type.FilterSelected -> {
+                filterState =
+                    filterState.copy(filterNames = filterState.filterNames.copy(type = event.filterName))
+                if (event.filterName == "all"){
+                    fetchPokemonList()
+                } else {
+                    fetchPokemonListByType(event.filterName)
                 }
-
             }
         }
     }
@@ -68,8 +68,19 @@ class PokemonListVM @Inject constructor(
     private fun fetchPokemonList() {
         fetchJob?.cancel()
         fetchJob = useCase.getPokemonList().onEach { pokemons ->
-            _pokemonListState.value = pokemonListState.value.copy(
+            pokemonListState = pokemonListState.copy(
                 pokemonList = pokemons
+            )
+        }.launchIn(viewModelScope)
+    }
+
+    private fun fetchPokemonListByType(type: String) {
+        fetchJob?.cancel()
+        fetchJob = useCase.getPokemonList().onEach { pokemons ->
+            pokemonListState = pokemonListState.copy(
+                pokemonList = pokemons.filter { pokemon ->
+                    pokemon.types.any { it.type.name == type }
+                }
             )
         }.launchIn(viewModelScope)
     }

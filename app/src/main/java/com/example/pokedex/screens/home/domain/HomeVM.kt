@@ -7,7 +7,7 @@ import com.example.pokedex.navigation.PokemonDetailScreenNavArgs
 import com.example.pokedex.screens.home.domain.state.PokemonState
 import com.example.pokedex.screens.home.domain.useCase.HomeUseCaseWrapper
 import com.example.pokedex.screens.navArgs
-import com.example.pokedex.screens.pokemonList.domain.PokemonListEvent
+import com.example.pokedex.screens.pokemonList.presentation.event.PokemonListEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

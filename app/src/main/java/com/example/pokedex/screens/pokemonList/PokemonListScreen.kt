@@ -19,16 +19,18 @@ fun PokemonListScreen(
     viewModel: PokemonListVM = hiltViewModel(),
     navigator: DestinationsNavigator,
 ) {
-    val pokemonListState = viewModel.pokemonListState.value
+    val pokemonListState = viewModel.pokemonListState
     val pokemonGridState = viewModel.pokemonGridState
     val filterState = viewModel.filterState
 
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        FiltersSection(Modifier.fillMaxWidth(), filterState, onEvent = { event ->
-            viewModel.onEvent(event)
-        } )
+        FiltersSection(
+            Modifier.fillMaxWidth(),
+            filterState,
+            onEvent = { event -> viewModel.onEvent(event) }
+        )
         PokemonVerticalGrid(
             modifier = Modifier,
             pokemonList = pokemonListState.pokemonList,

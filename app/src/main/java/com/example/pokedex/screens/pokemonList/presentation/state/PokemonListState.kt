@@ -1,4 +1,4 @@
-package com.example.pokedex.screens.pokemonList.domain.state
+package com.example.pokedex.screens.pokemonList.presentation.state
 
 import com.example.pokedex.datasource.local.model.Pokemon
 
