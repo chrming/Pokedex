@@ -1,14 +1,25 @@
 package com.example.pokedex.screens.pokemonList
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.pokedex.screens.destinations.PokemonDetailScreenDestination
-import com.example.pokedex.screens.pokemonList.domain.PokemonListVM
-import com.example.pokedex.screens.pokemonList.ui.composable.filter.FiltersSection
+import com.example.pokedex.screens.pokemonList.presentation.PokemonListVM
+import com.example.pokedex.screens.pokemonList.presentation.event.PokemonListEvent
+import com.example.pokedex.screens.pokemonList.ui.composable.filterSection.FiltersSection
 import com.example.pokedex.screens.pokemonList.ui.composable.PokemonVerticalGrid
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -23,22 +34,47 @@ fun PokemonListScreen(
     val pokemonGridState = viewModel.pokemonGridState
     val filterState = viewModel.filterState
 
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        FiltersSection(
-            Modifier.fillMaxWidth(),
-            filterState,
-            onEvent = { event -> viewModel.onEvent(event) }
-        )
-        PokemonVerticalGrid(
-            modifier = Modifier,
-            pokemonList = pokemonListState.pokemonList,
-            pokemonGridState = pokemonGridState,
-            onItemClick = { pokemon ->
-                navigator.navigate(PokemonDetailScreenDestination(pokemon.name))
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                shape = RectangleShape,
+                onClick = { viewModel.onEvent(PokemonListEvent.FilterEvent.ToggleFilterSection) }) {
+                when (filterState.isFilterSectionExpanded) {
+                    true -> {
+                        Icon(
+                            Icons.Default.ArrowDropUp,
+                            contentDescription = "Toggle filter section"
+                        )
+                    }
+                    false -> {
+                        Icon(
+                            Icons.Default.FilterAlt,
+                            contentDescription = "Toggle filter section"
+                        )
+                    }
+                }
             }
-        )
+        }
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            AnimatedVisibility(visible = filterState.isFilterSectionExpanded) {
+                FiltersSection(
+                    Modifier
+                        .padding(2.dp),
+                    filterState,
+                    onEvent = { event -> viewModel.onEvent(event) }
+                )
+            }
+            PokemonVerticalGrid(
+                modifier = Modifier,
+                pokemonList = pokemonListState.pokemonList,
+                pokemonGridState = pokemonGridState,
+                onItemClick = { pokemon ->
+                    navigator.navigate(PokemonDetailScreenDestination(pokemon.name))
+                }
+            )
+        }
     }
 }
-

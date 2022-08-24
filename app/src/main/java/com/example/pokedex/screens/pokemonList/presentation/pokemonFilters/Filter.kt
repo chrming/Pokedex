@@ -1,4 +1,4 @@
-package com.example.pokedex.screens.pokemonList.util.pokemonFilters
+package com.example.pokedex.screens.pokemonList.presentation.pokemonFilters
 
 sealed class Filter(val filters: Array<String>) {
     object Type : Filter(
@@ -29,26 +29,26 @@ sealed class Filter(val filters: Array<String>) {
     object Version : Filter(
         arrayOf(
             "all",
-            "red-blue",
+            "red",
+            "blue",
             "yellow",
-            "gold-silver",
+            "gold",
+            "silver",
             "crystal",
-            "ruby-sapphire",
+            "ruby",
+            "sapphire",
             "emerald",
-            "firered-leafgreen",
-            "diamond-pearl",
+            "firered",
+            "leafgreen",
+            "diamond",
+            "pearl",
             "platinum",
-            "heartgold-soulsilver",
-            "black-white",
+            "heartgold",
+            "soulsilver",
+            "black",
+            "white",
             "colosseum",
             "xd",
-            "black-2-white-2",
-            "x-y",
-            "omega-ruby-alpha-sapphire",
-            "sun-moon",
-            "ultra-sun-ultra-moon",
-            "lets-go-pikachu-lets-go-eevee",
-            "sw"
         )
     )
 }

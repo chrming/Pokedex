@@ -1,6 +1,5 @@
 package com.example.pokedex.screens.pokemonList.domain.useCase
 
-import android.util.Log
 import com.example.pokedex.datasource.local.model.Pokemon
 import com.example.pokedex.datasource.local.repository.IPokemonRepository
 import com.example.pokedex.datasource.network.repository.IApiPokemonRepository

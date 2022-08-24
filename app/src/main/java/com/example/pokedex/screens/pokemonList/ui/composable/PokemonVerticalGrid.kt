@@ -25,14 +25,6 @@ fun PokemonVerticalGrid(
         items(items = pokemonList, key = { it.id }) { pokemon ->
             PokemonListItem(
                 modifier = Modifier
-                    .graphicsLayer {
-                        alpha =
-                            2F - pokemonGridState.layoutInfo.normalizedItemPosition(pokemon.id).absoluteValue
-                        scaleX =
-                            1 - pokemonGridState.layoutInfo.normalizedItemPosition(pokemon.id).absoluteValue / 7F
-                        scaleY =
-                            1 - pokemonGridState.layoutInfo.normalizedItemPosition(pokemon.id).absoluteValue / 7F
-                    }
                     .padding(2.dp),
                 spriteUrl = pokemon.sprites.other.officialArtwork.front_default,
                 name = pokemon.name,
