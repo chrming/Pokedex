@@ -11,6 +11,12 @@ interface PokemonApi {
     @GET("pokemon/?offset=0&limit=100/")
     suspend fun getPokemonResponse(): Response<PokemonListResponse>
 
+    @GET("pokemon/?offset=pageNumber&limit=pageSize/")
+    suspend fun getPokemonResponsePage(
+        @Path("pageNumber") pageNumber: Int,
+        @Path("pageSize") pageSize: Int
+    ): Response<PokemonListResponse>
+
     @GET("pokemon/{idOrName}")
     suspend fun getPokemon(@Path("idOrName") idOrName: String): Response<Pokemon>
 

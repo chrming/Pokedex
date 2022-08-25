@@ -8,7 +8,8 @@ interface IApiPokemonRepository {
 
     suspend fun getPokemonList(): Response<PokemonListResponse>
 
-    // Return a Pokemon object after given id
+    suspend fun getPokemonListPage(pageNumber: Int, pageSize: Int): Response<PokemonListResponse>
+
     suspend fun getPokemon(idOrName: String): Response<Pokemon>
 
     suspend fun getPokemonById(id: Int): Response<Pokemon>

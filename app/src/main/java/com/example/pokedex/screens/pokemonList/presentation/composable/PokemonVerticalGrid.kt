@@ -1,14 +1,12 @@
-package com.example.pokedex.screens.pokemonList.ui.composable
+package com.example.pokedex.screens.pokemonList.presentation.composable
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import com.example.pokedex.datasource.local.model.Pokemon
-import kotlin.math.absoluteValue
 
 @Composable
 fun PokemonVerticalGrid(

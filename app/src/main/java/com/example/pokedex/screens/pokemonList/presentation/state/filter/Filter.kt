@@ -1,4 +1,4 @@
-package com.example.pokedex.screens.pokemonList.presentation.pokemonFilters
+package com.example.pokedex.screens.pokemonList.presentation.state.filter
 
 sealed class Filter(val filters: Array<String>) {
     object Type : Filter(

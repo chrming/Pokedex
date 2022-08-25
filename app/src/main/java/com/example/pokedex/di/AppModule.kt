@@ -11,6 +11,8 @@ import com.example.pokedex.datasource.network.repository.ApiPokemonRepository
 import com.example.pokedex.datasource.network.repository.IApiPokemonRepository
 import com.example.pokedex.screens.home.domain.useCase.HomeUseCaseWrapper
 import com.example.pokedex.screens.pokemonList.domain.useCase.*
+import com.example.pokedex.screens.pokemonList.domain.pager.PokemonListPagingSource
+import com.example.pokedex.screens.pokemonList.domain.pager.PokemonListRemoteMediator
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +24,17 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
+    @Provides
+    @Singleton
+    fun providePokemonListRemoteMediator(localRepo: IPokemonRepository, apiRepo: IApiPokemonRepository): PokemonListRemoteMediator {
+        return PokemonListRemoteMediator(localRepo, apiRepo)
+    }
+
+    @Provides
+    @Singleton
+    fun providePokemonListPagingSource(localRepo: IPokemonRepository, apiRepo: IApiPokemonRepository): PokemonListPagingSource {
+        return PokemonListPagingSource(localRepo, apiRepo)
+    }
 
     @Provides
     @Singleton

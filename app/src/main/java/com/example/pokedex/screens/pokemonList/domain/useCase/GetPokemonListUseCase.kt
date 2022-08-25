@@ -33,3 +33,29 @@ class GetPokemonListUseCase(
         return url.drop(BASE_URL_LENGTH).dropLast(1).toInt()
     }
 }
+
+class TESTGetPokemonListUseCase(
+    private val apiRepo: IApiPokemonRepository,
+    private val localRepo: IPokemonRepository
+) {
+    operator fun invoke(): Flow<List<Pokemon>> {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (localRepo.isDatabaseEmpty().isEmpty()) {
+                apiRepo.getPokemonList().body()?.let {
+                    for (pokemonLink in it.results) {
+                        apiRepo.getPokemonById(getIdFromUrl(pokemonLink.url)).body()
+                            ?.let { pokemon ->
+                                localRepo.insertPokemon(pokemon)
+                            }
+                    }
+                }
+            }
+        }
+        return localRepo.getPokemonList()
+    }
+
+}
+
+fun getIdFromUrl(url: String): Int {
+    return url.drop(BASE_URL_LENGTH).dropLast(1).toInt()
+}

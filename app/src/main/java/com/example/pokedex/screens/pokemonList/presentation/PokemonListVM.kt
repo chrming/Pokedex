@@ -6,7 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.*
 import com.example.pokedex.screens.pokemonList.domain.useCase.PokemonListUseCaseWrapper
+import com.example.pokedex.screens.pokemonList.domain.pager.PokemonListPagingSource
+import com.example.pokedex.screens.pokemonList.domain.pager.PokemonListRemoteMediator
 import com.example.pokedex.screens.pokemonList.presentation.event.PokemonListEvent
 import com.example.pokedex.screens.pokemonList.presentation.state.FilterState
 import com.example.pokedex.screens.pokemonList.presentation.state.PokemonListState
@@ -19,8 +22,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PokemonListVM @Inject constructor(
-    private val useCase: PokemonListUseCaseWrapper
+    private val useCase: PokemonListUseCaseWrapper,
+    private val pageSource: PokemonListPagingSource,
+    private val remoteMediator: PokemonListRemoteMediator
 ) : ViewModel() {
+
+    @OptIn(ExperimentalPagingApi::class)
+    private val pager = Pager(
+        config = PagingConfig(50),
+        remoteMediator = remoteMediator
+    ) {
+        pageSource
+    }.flow.cachedIn(viewModelScope)
 
     var pokemonListState by mutableStateOf(PokemonListState())
         private set
@@ -74,7 +87,7 @@ class PokemonListVM @Inject constructor(
             is PokemonListEvent.FilterEvent.Name.OnChange -> {
                 filterState =
                     filterState.copy(filterNames = filterState.filterNames.copy(name = event.filterName))
-                if (event.filterName.isEmpty() ) {
+                if (event.filterName.isEmpty()) {
                     fetchPokemonList()
                 } else {
                     fetchPokemonListByName(event.filterName)
@@ -91,8 +104,10 @@ class PokemonListVM @Inject constructor(
         fetchJob?.cancel()
         fetchJob =
             viewModelScope.launch {
-                useCase.getPokemonList().collect { newPokemonList ->
-                    pokemonListState = pokemonListState.copy(pokemonList = newPokemonList)
+         pager.collect() {
+             it.
+                    pokemonListState = pokemonListState.copy(pokemonList = it.filter
+                    )
                 }
             }
     }
@@ -139,3 +154,4 @@ class PokemonListVM @Inject constructor(
             }.launchIn(viewModelScope)
     }
 }
+//TODO improve fetching pokemons

@@ -3,12 +3,10 @@ package com.example.pokedex.screens.pokemonList
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
@@ -19,8 +17,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.pokedex.screens.destinations.PokemonDetailScreenDestination
 import com.example.pokedex.screens.pokemonList.presentation.PokemonListVM
 import com.example.pokedex.screens.pokemonList.presentation.event.PokemonListEvent
-import com.example.pokedex.screens.pokemonList.ui.composable.filterSection.FiltersSection
-import com.example.pokedex.screens.pokemonList.ui.composable.PokemonVerticalGrid
+import com.example.pokedex.screens.pokemonList.presentation.composable.filterSection.FiltersSection
+import com.example.pokedex.screens.pokemonList.presentation.composable.PokemonVerticalGrid
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 

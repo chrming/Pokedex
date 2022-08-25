@@ -1,7 +1,7 @@
 package com.example.pokedex.screens.pokemonList.presentation.state
 
-import com.example.pokedex.screens.pokemonList.ui.composable.filterSection.FilterExpanded
-import com.example.pokedex.screens.pokemonList.ui.composable.filterSection.FilterNames
+import com.example.pokedex.screens.pokemonList.presentation.state.filter.FilterExpanded
+import com.example.pokedex.screens.pokemonList.presentation.state.filter.FilterNames
 
 data class FilterState(
     val filterExpanded: FilterExpanded = FilterExpanded(),

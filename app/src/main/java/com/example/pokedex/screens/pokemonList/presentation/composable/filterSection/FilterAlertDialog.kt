@@ -1,4 +1,4 @@
-package com.example.pokedex.screens.pokemonList.ui.composable.filterSection
+package com.example.pokedex.screens.pokemonList.presentation.composable.filterSection
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells

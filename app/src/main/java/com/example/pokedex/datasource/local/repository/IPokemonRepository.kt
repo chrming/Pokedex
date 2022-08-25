@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IPokemonRepository {
     fun getPokemonList(): Flow<List<Pokemon>>
+    fun getPokemonListPage(pageNumber: Int, pageSize: Int): List<Pokemon>
     fun isDatabaseEmpty(): List<Pokemon>
     suspend fun getPokemon(idOrName: String): Pokemon
     suspend fun insertPokemon(pokemon: Pokemon)

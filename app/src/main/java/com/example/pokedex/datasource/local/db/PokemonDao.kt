@@ -13,6 +13,9 @@ interface PokemonDao {
     @Query("SELECT * FROM pokemon")
     fun getPokemonList(): Flow<List<Pokemon>>
 
+    @Query("SELECT * FROM pokemon WHERE id BETWEEN (:pageNumber) * :pageSize AND :pageNumber  * :pageSize - 1")
+    fun getPokemonListPage(pageNumber: Int, pageSize: Int): List<Pokemon>
+
     @Query("SELECT * FROM pokemon")
     fun isDatabaseEmpty(): List<Pokemon>
 

@@ -12,6 +12,10 @@ class ApiPokemonRepository @Inject constructor(private val api: PokemonApi) :
         return api.getPokemonResponse()
     }
 
+    override suspend fun getPokemonListPage(pageNumber: Int, pageSize: Int): Response<PokemonListResponse> {
+        return api.getPokemonResponsePage(pageNumber, pageSize)
+    }
+
     override suspend fun getPokemon(idOrName: String): Response<Pokemon> {
         return api.getPokemon(idOrName)
     }

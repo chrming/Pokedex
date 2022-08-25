@@ -14,6 +14,10 @@ class PokemonRepository @Inject constructor(private val dao: PokemonDao) : IPoke
         return dao.getPokemonList()
     }
 
+    override fun getPokemonListPage(pageNumber: Int, pageSize: Int): List<Pokemon> {
+        return dao.getPokemonListPage(pageNumber, pageSize)
+    }
+
     override fun isDatabaseEmpty(): List<Pokemon> {
         return dao.isDatabaseEmpty()
     }

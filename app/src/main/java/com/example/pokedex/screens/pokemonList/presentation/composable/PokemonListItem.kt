@@ -1,4 +1,4 @@
-package com.example.pokedex.screens.pokemonList.ui.composable
+package com.example.pokedex.screens.pokemonList.presentation.composable
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import coil.size.Dimension
 import com.example.pokedex.datasource.local.model.pokemonAttributes.Attribute
