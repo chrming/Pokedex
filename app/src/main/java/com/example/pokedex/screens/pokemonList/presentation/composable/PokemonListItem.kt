@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.size.Dimension
-import com.example.pokedex.datasource.local.model.pokemonAttributes.Attribute
+import com.example.pokedex.datasource.model.pokemonAttributes.Attribute
 
 @Preview
 @Composable

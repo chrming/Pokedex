@@ -1,59 +1,17 @@
 package com.example.pokedex.screens.pokemonList.domain.useCase
 
-import com.example.pokedex.datasource.local.model.Pokemon
-import com.example.pokedex.datasource.local.repository.IPokemonRepository
-import com.example.pokedex.datasource.network.repository.IApiPokemonRepository
-import com.example.pokedex.screens.pokemonList.util.const.BASE_URL_LENGTH
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import androidx.paging.PagingData
+import com.example.pokedex.const.Constants.BASE_URL_LENGTH
+import com.example.pokedex.datasource.model.Pokemon
+import com.example.pokedex.datasource.paging.repository.PokemonPagingRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class GetPokemonListUseCase(
-    private val apiRepo: IApiPokemonRepository,
-    private val localRepo: IPokemonRepository
+    private val repository: PokemonPagingRepository
 ) {
-    operator fun invoke(): Flow<List<Pokemon>> {
-        CoroutineScope(Dispatchers.IO).launch {
-            if (localRepo.isDatabaseEmpty().isEmpty()) {
-                apiRepo.getPokemonList().body()?.let {
-                    for (pokemonLink in it.results) {
-                        apiRepo.getPokemonById(getIdFromUrl(pokemonLink.url)).body()
-                            ?.let { pokemon ->
-                                localRepo.insertPokemon(pokemon)
-                            }
-                    }
-                }
-            }
-        }
-        return localRepo.getPokemonList()
+    operator fun invoke(): Flow<PagingData<Pokemon>> {
+        return repository.getAllPokemons()
     }
-
-    private fun getIdFromUrl(url: String): Int {
-        return url.drop(BASE_URL_LENGTH).dropLast(1).toInt()
-    }
-}
-
-class TESTGetPokemonListUseCase(
-    private val apiRepo: IApiPokemonRepository,
-    private val localRepo: IPokemonRepository
-) {
-    operator fun invoke(): Flow<List<Pokemon>> {
-        CoroutineScope(Dispatchers.IO).launch {
-            if (localRepo.isDatabaseEmpty().isEmpty()) {
-                apiRepo.getPokemonList().body()?.let {
-                    for (pokemonLink in it.results) {
-                        apiRepo.getPokemonById(getIdFromUrl(pokemonLink.url)).body()
-                            ?.let { pokemon ->
-                                localRepo.insertPokemon(pokemon)
-                            }
-                    }
-                }
-            }
-        }
-        return localRepo.getPokemonList()
-    }
-
 }
 
 fun getIdFromUrl(url: String): Int {

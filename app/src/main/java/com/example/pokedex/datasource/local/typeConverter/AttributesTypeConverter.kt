@@ -2,7 +2,7 @@ package com.example.pokedex.datasource.local.typeConverter
 
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
-import com.example.pokedex.datasource.local.model.pokemonAttributes.*
+import com.example.pokedex.datasource.model.pokemonAttributes.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

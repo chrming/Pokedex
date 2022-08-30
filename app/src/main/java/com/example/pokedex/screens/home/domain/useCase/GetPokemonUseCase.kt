@@ -1,12 +1,12 @@
 package com.example.pokedex.screens.home.domain.useCase
 
-import com.example.pokedex.datasource.local.model.Pokemon
+import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.local.repository.IPokemonRepository
-import com.example.pokedex.datasource.network.repository.IApiPokemonRepository
+import com.example.pokedex.datasource.network.repository.IPokemonApiRepository
 import java.io.IOException
 
 class GetPokemonUseCase(
-    private val apiRepo: IApiPokemonRepository,
+    private val apiRepo: IPokemonApiRepository,
     private val localRepo: IPokemonRepository
 ) {
     @Throws(IOException::class)

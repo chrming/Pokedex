@@ -1,5 +1,6 @@
 package com.example.pokedex.screens.pokemonList
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.pokedex.screens.destinations.PokemonDetailScreenDestination
 import com.example.pokedex.screens.pokemonList.presentation.PokemonListVM
 import com.example.pokedex.screens.pokemonList.presentation.event.PokemonListEvent
@@ -28,7 +30,7 @@ fun PokemonListScreen(
     viewModel: PokemonListVM = hiltViewModel(),
     navigator: DestinationsNavigator,
 ) {
-    val pokemonListState = viewModel.pokemonListState
+    val pokemonListState = viewModel.pokemonListState.pokemonList.collectAsLazyPagingItems()
     val pokemonGridState = viewModel.pokemonGridState
     val filterState = viewModel.filterState
 
@@ -57,6 +59,8 @@ fun PokemonListScreen(
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
+
+
             AnimatedVisibility(visible = filterState.isFilterSectionExpanded) {
                 FiltersSection(
                     Modifier
@@ -66,8 +70,8 @@ fun PokemonListScreen(
                 )
             }
             PokemonVerticalGrid(
-                modifier = Modifier,
-                pokemonList = pokemonListState.pokemonList,
+                modifier = Modifier.fillMaxSize(),
+                pokemonList = pokemonListState,
                 pokemonGridState = pokemonGridState,
                 onItemClick = { pokemon ->
                     navigator.navigate(PokemonDetailScreenDestination(pokemon.name))

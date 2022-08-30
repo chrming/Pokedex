@@ -1,6 +1,6 @@
 package com.example.pokedex.screens.pokemonList.domain.useCase
 
-import com.example.pokedex.datasource.local.model.Pokemon
+import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.local.repository.IPokemonRepository
 import javax.inject.Inject
 
