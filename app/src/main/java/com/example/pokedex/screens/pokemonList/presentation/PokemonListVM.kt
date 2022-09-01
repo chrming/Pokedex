@@ -1,21 +1,22 @@
 package com.example.pokedex.screens.pokemonList.presentation
 
+import android.util.Log
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.*
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.example.pokedex.screens.pokemonList.domain.useCase.PokemonListUseCaseWrapper
-import com.example.pokedex.screens.pokemonList.domain.pager.PokemonListPagingSource
-import com.example.pokedex.screens.pokemonList.domain.pager.PokemonListRemoteMediator
 import com.example.pokedex.screens.pokemonList.presentation.event.PokemonListEvent
 import com.example.pokedex.screens.pokemonList.presentation.state.FilterState
 import com.example.pokedex.screens.pokemonList.presentation.state.PokemonListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,21 +24,9 @@ import javax.inject.Inject
 @HiltViewModel
 class PokemonListVM @Inject constructor(
     private val useCase: PokemonListUseCaseWrapper,
-    private val pageSource: PokemonListPagingSource,
-    private val remoteMediator: PokemonListRemoteMediator
 ) : ViewModel() {
 
-    @OptIn(ExperimentalPagingApi::class)
-    private val pager = Pager(
-        config = PagingConfig(50),
-        remoteMediator = remoteMediator
-    ) {
-        pageSource
-    }.flow.cachedIn(viewModelScope)
-
     var pokemonListState by mutableStateOf(PokemonListState())
-        private set
-    var pokemonGridState by mutableStateOf(LazyGridState())
         private set
     var filterState by mutableStateOf(FilterState())
         private set
@@ -64,7 +53,7 @@ class PokemonListVM @Inject constructor(
                 if (event.filterName == "all") {
                     fetchPokemonList()
                 } else {
-                    fetchPokemonListByType(event.filterName)
+                    // fetchPokemonListByType(event.filterName)
                 }
             }
             is PokemonListEvent.FilterEvent.Version.FilterExpanded -> {
@@ -81,7 +70,7 @@ class PokemonListVM @Inject constructor(
                 if (event.filterName == "all") {
                     fetchPokemonList()
                 } else {
-                    fetchPokemonListByVersion(event.filterName)
+                    //fetchPokemonListByVersion(event.filterName)
                 }
             }
             is PokemonListEvent.FilterEvent.Name.OnChange -> {
@@ -90,7 +79,7 @@ class PokemonListVM @Inject constructor(
                 if (event.filterName.isEmpty()) {
                     fetchPokemonList()
                 } else {
-                    fetchPokemonListByName(event.filterName)
+                    //fetchPokemonListByName(event.filterName)
                 }
             }
             PokemonListEvent.FilterEvent.ToggleFilterSection -> {
@@ -102,56 +91,10 @@ class PokemonListVM @Inject constructor(
 
     private fun fetchPokemonList() {
         fetchJob?.cancel()
-        fetchJob =
-            viewModelScope.launch {
-         pager.collect() {
-             it.
-                    pokemonListState = pokemonListState.copy(pokemonList = it.filter
-                    )
-                }
-            }
-    }
-
-    private fun fetchPokemonListByType(type: String) {
-        fetchJob?.cancel()
-        fetchJob =
-            viewModelScope.launch {
-                useCase.getPokemonList()
-                    .map { pokemons ->
-                        pokemons.filter { pokemon -> pokemon.types.any { it.type.name == type } }
-                    }
-                    .collect() { newPokemonList ->
-                        pokemonListState = pokemonListState.copy(pokemonList = newPokemonList)
-                    }
-            }
-    }
-
-
-    private fun fetchPokemonListByVersion(version: String) {
-        fetchJob?.cancel()
-        fetchJob =
-            viewModelScope.launch {
-                useCase.getPokemonList()
-                    .map { pokemons ->
-                        pokemons.filter { pokemon -> pokemon.game_indices.any { it.version.name == version } }
-                    }
-                    .collect { newPokemonList ->
-                        pokemonListState = pokemonListState.copy(pokemonList = newPokemonList)
-                    }
-            }
-    }
-
-    private fun fetchPokemonListByName(name: String) { //TODO Kills app. Add Confirm button
-        fetchJob?.cancel()
-        fetchJob = useCase.getPokemonList()
-            .map { pokemons ->
-                pokemons.filter { pokemon -> pokemon.name.startsWith(name) }
-            }
-            .onEach { pokemons ->
-                pokemonListState = pokemonListState.copy(
-                    pokemonList = pokemons
-                )
-            }.launchIn(viewModelScope)
+        fetchJob = viewModelScope.launch {
+            pokemonListState = pokemonListState.copy(
+                pokemonList = useCase.getPokemonList()
+            )
+        }
     }
 }
-//TODO improve fetching pokemons

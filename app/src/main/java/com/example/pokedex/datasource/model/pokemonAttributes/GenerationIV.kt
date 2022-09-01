@@ -6,12 +6,12 @@ import com.google.gson.annotations.SerializedName
 data class GenerationIV(
     @Embedded(prefix = "diamond_pearl_")
     @SerializedName("diamond-pearl")
-    val diamondPearl: EditionGenIV,
+    val diamondPearl: EditionGenIV?,
     @Embedded(prefix = "heartgold_soulsilver_")
     @SerializedName("heartgold-soulsilver")
-    val heartgoldSoulsilver: EditionGenIV,
+    val heartgoldSoulsilver: EditionGenIV?,
     @Embedded(prefix = "platinum_")
-    val platinum: EditionGenIV
+    val platinum: EditionGenIV?
 ){
     constructor(): this(EditionGenIV(), EditionGenIV(), EditionGenIV())
 }

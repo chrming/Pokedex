@@ -1,7 +1,7 @@
 package com.example.pokedex.datasource.network.repository
 
 import com.example.pokedex.datasource.model.Pokemon
-import com.example.pokedex.datasource.network.IPokemonApi
+import com.example.pokedex.datasource.network.api.IPokemonApi
 import retrofit2.Response
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.pokedex.datasource.network.model.pokemon
+package com.example.pokedex.datasource.network.model
 
 data class PokemonListResponse(
     val count: Int,

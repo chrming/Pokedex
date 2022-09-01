@@ -6,28 +6,28 @@ import com.google.gson.annotations.SerializedName
 data class Versions(
     @Embedded
     @SerializedName("generation-i")
-    val generationI: GenerationI,
+    val generationI: GenerationI?,
     @Embedded
     @SerializedName("generation-ii")
-    val generationII: GenerationII,
+    val generationII: GenerationII?,
     @Embedded
     @SerializedName("generation-iii")
-    val generationIII: GenerationIII,
+    val generationIII: GenerationIII?,
     @Embedded
     @SerializedName("generation-iv")
-    val generationIV: GenerationIV,
+    val generationIV: GenerationIV?,
     @Embedded
     @SerializedName("generation-v")
-    val generationV: GenerationV,
+    val generationV: GenerationV?,
     @Embedded
     @SerializedName("generation-vi")
-    val generationVI: GenerationVI,
+    val generationVI: GenerationVI?,
     @Embedded
     @SerializedName("generation-vii")
-    val generationVII: GenerationVII,
+    val generationVII: GenerationVII?,
     @Embedded
     @SerializedName("generation-viii")
-    val generationVIII: GenerationVIII
+    val generationVIII: GenerationVIII?
 ) {
     constructor() : this(
         GenerationI(),

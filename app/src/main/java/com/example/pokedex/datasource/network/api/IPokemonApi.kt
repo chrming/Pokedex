@@ -1,4 +1,4 @@
-package com.example.pokedex.datasource.network
+package com.example.pokedex.datasource.network.api
 
 import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.network.model.PokemonListResponse

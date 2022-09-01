@@ -13,7 +13,3 @@ class GetPokemonListUseCase(
         return repository.getAllPokemons()
     }
 }
-
-fun getIdFromUrl(url: String): Int {
-    return url.drop(BASE_URL_LENGTH).dropLast(1).toInt()
-}

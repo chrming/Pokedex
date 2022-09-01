@@ -1,126 +1,310 @@
 package com.example.pokedex.screens.pokemonList.presentation.composable
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
-import coil.size.Dimension
-import com.example.pokedex.datasource.model.pokemonAttributes.Attribute
+import com.example.pokedex.datasource.model.Pokemon
+import com.example.pokedex.datasource.model.pokemonAttributes.Type
+import com.example.pokedex.ui.theme.*
+import java.util.*
 
-@Preview
-@Composable
-fun PreviewPokemonListItem() {
-    PokemonListItem(
-        spriteUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png",
-        name = "Arbok",
-        type = Attribute("poison", "https://pokeapi.co/api/v2/type/4/")
-    ) {}
-}
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PokemonListItem(
     modifier: Modifier = Modifier,
-    spriteUrl: String,
-    name: String,
-    type: Attribute,
+    pokemon: Pokemon,
     onClick: () -> Unit
 ) {
     Card(
-        modifier = modifier.size(Dimension.Pixels(120).px.dp),
-        backgroundColor = backgroundColorByType(type.name),
+        modifier = modifier
+            .height(120.dp)
+            .fillMaxWidth(),
         onClick = onClick
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.linearGradient(
+                        colorListByType(pokemon.types[0])
+                    )
+                )
         ) {
-            SubcomposeAsyncImage(
-                model = spriteUrl,
-                contentDescription = null,
-                loading = {
-                    CircularProgressIndicator()
+            Row(modifier = Modifier.fillMaxSize()) {
+                Box(contentAlignment = Alignment.BottomCenter) {
+                    SubcomposeAsyncImage(
+                        model = pokemon.sprites.other.officialArtwork?.front_default,
+                        contentDescription = null,
+                        loading = {
+                            CircularProgressIndicator()
+                        }
+                    )
+                    Box() {
+                        Text(
+                            modifier = Modifier,
+                            text = pokemon.name.replaceFirstChar {
+                                if (it.isLowerCase()) it.titlecase(
+                                    Locale.getDefault()
+                                ) else it.toString()
+                            },
+                            style = PokemonTypography.body1,
+                            color = White,
+                            letterSpacing = 2.sp
+                        )
+                        Text(
+                            modifier = Modifier,
+                            text = pokemon.name.replaceFirstChar {
+                                if (it.isLowerCase()) it.titlecase(
+                                    Locale.getDefault()
+                                ) else it.toString()
+                            },
+                            style = PokemonTypography.h1,
+                            color = Black,
+                            letterSpacing = 2.sp
+                        )
+                    }
                 }
-            )
-            Text(text = name)
+                Row(modifier = Modifier.fillMaxHeight(), verticalAlignment = Alignment.Bottom) {
+                    pokemon.types.forEach {
+                        Chip(
+                            onClick = {/*TODO filter by this chip*/ },
+                            colors = ChipDefaults.chipColors(
+                                backgroundColor = colorByType(it)
+                            )
+                        ) {
+                            Text(text = it.type.name)
+                        }
+
+                    }
+                }
+            }
         }
     }
 }
 
-fun backgroundColorByType(pokemonType: String): Color {
-    val backgroundColor: Color = when (pokemonType) {
+fun colorByType(pokemonType: Type): Color {
+    return when (pokemonType.type.name) {
         "fighting" -> {
-            Color(113, 53, 50)
-            //Color(94, 44, 42)
+            //Color(113, 53, 50)
+            Fighting
         }
         "flying" -> {
-            Color(38, 26, 76)//, rgb(66, 59, 90))
+            //Color(66, 59, 90)
+            Flying
         }
         "poison" -> {
-            Color(104, 64, 104)//, rgb(85, 53, 85))
+            //Color(104, 64, 104)
+            Poison
         }
         "ground" -> {
-            Color(92, 82, 51)//, rgb(114, 101, 62))
+            //Color(114, 101, 62)
+            Ground
         }
         "rock" -> {
-            Color(137, 127, 84)//, rgb(111, 103, 68))
+            //Color(137, 127, 84)
+            Rock
         }
         "bug" -> {
-            Color(134, 141, 78)//, rgb(114, 119, 66))
+            //Color(134, 141, 78)
+            Bug
         }
         "ghost" -> {
-            Color(87, 76, 103)//, rgb(67, 60, 81))
+            //Color(87, 76, 103)
+            Ghost
         }
         "steel" -> {
-            Color(54, 54, 66)//, rgb(66, 66, 82))
+            //Color(66, 66, 82)
+            Steel
         }
         "fire" -> {
-            Color(136, 88, 53)//, rgb(140, 91, 55))
+            //Color(140, 91, 55)
+            Fire
         }
         "water" -> {
-            Color(34, 53, 99)//, rgb(40, 63, 118))
+            //Color(40, 63, 118)
+            Water
         }
         "grass" -> {
-            Color(110, 136, 84)// rgb(94, 126, 78))
+            //Color(110, 136, 84)
+            Grass
         }
         "electric" -> {
-            Color(118, 105, 53)//, rgb(171, 152, 74))
+            //Color(171, 152, 74)
+            Electric
         }
         "psychic" -> {
-            Color(101, 26, 49)//, rgb(124, 31, 59))
+            //Color(124, 31, 59)
+            Psychic
         }
         "ice" -> {
-            Color(62, 95, 95)//, rgb(79, 120, 120))
+            //Color(79, 120, 120)
+            Ice
         }
         "dragon" -> {
-            Color(46, 21, 107)//, rgb(52, 23, 119))
+            //Color(52, 23, 119)
+            Dragon
         }
         "dark" -> {
-            Color(85, 74, 68)//, rgb(63, 55, 51));
+            //Color(85, 74, 68)
+            Dark
         }
         "fairy" -> {
-            Color(80, 38, 80)//, rgb(98, 46, 98))
+            //Color(98, 46, 98)
+            Fairy
         }
         "unknown" -> {
-            Color(85, 85, 70) //rgb(110, 110, 89))
+            //Color(110, 110, 89)
+            Normal
+
         }
         "shadow" -> {
-            Color(85, 85, 70) //rgb(110, 110, 89))
+            //Color(110, 110, 89)
+            Normal
+
         }
         else -> {
-            Color(85, 85, 70) //rgb(110, 110, 89))
+            //Color(110, 110, 89)
+            Normal
         }
     }
-    return backgroundColor
 }
 
+fun colorListByType(pokemonType: Type): List<Color> {
+    return when (pokemonType.type.name) {
+        "fighting" -> {
+            listOf(
+                LightFighting,
+                Fighting
+            )
+        }
+        "flying" -> {
+            listOf(
+                LightFlying,
+                Flying
+            )
+        }
+        "poison" -> {
+            listOf(
+                LightPoison,
+                Poison
+            )
+        }
+        "ground" -> {
+            listOf(
+                LightGround,
+                Ground
+            )
+        }
+        "rock" -> {
+            listOf(
+                LightRock,
+                Rock
+            )
+        }
+        "bug" -> {
+            listOf(
+                LightBug,
+                Bug
+            )
+        }
+        "ghost" -> {
+            listOf(
+                LightGhost,
+                Ghost
+            )
+        }
+        "steel" -> {
+            listOf(
+                LightSteel,
+                Steel
+            )
+        }
+        "fire" -> {
+            listOf(
+                LightFire,
+                Fire
+            )
+        }
+        "water" -> {
+            listOf(
+                LightWater,
+                Water     //0xFF2648DC
+            )
+        }
+        "grass" -> {
+            listOf(
+                LightGrass,
+                Grass
+            )
+        }
+        "electric" -> {
+            listOf(
+                LightElectric,
+                Electric
+            )
+        }
+        "psychic" -> {
+            listOf(
+                LightPsychic,
+                Psychic
+            )
+        }
+        "ice" -> {
+            listOf(
+                LightIce,
+                Ice
+            )
+        }
+        "dragon" -> {
+            listOf(
+                LightDragon,
+                Dragon
+            )
+        }
+        "dark" -> {
+            listOf(
+                LightDark,
+                Dark
+            )
+        }
+        "fairy" -> {
+            listOf(
+                LightFairy,
+                Fairy
+            )
+        }
+        "unknown" -> {
+            listOf(
+                LightNormal,
+                Normal
+            )
+
+        }
+        "shadow" -> {
+            listOf(
+                LightNormal,
+                Normal
+            )
+
+        }
+        else -> {
+            listOf(
+                LightNormal,
+                Normal
+            )
+        }
+
+    }
+}

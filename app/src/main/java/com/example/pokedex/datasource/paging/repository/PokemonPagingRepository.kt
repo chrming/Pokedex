@@ -7,7 +7,6 @@ import androidx.paging.PagingData
 import com.example.pokedex.const.Constants.ITEM_PER_PAGE
 import com.example.pokedex.datasource.local.db.PokemonDatabase
 import com.example.pokedex.datasource.model.Pokemon
-import com.example.pokedex.datasource.network.PokemonApi
 import com.example.pokedex.datasource.network.repository.IPokemonApiRepository
 import com.example.pokedex.datasource.paging.PokemonRemoteMediator
 import kotlinx.coroutines.flow.Flow

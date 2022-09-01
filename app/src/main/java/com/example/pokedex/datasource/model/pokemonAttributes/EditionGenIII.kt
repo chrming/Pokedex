@@ -7,5 +7,5 @@ data class  EditionGenIII(
     val front_default: String?,
     val front_shiny: String?
 ) {
-    constructor() :this("None","None","None","None",)
+    constructor() :this("None","None","None","None")
 }

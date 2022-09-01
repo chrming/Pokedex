@@ -17,7 +17,7 @@ fun PokemonDetailScreen(
     val pokemonState = viewModel.pokemonState.value.pokemon
     Column() {
         AsyncImage(
-            model = pokemonState.sprites.other.officialArtwork.front_default,
+            model = pokemonState.sprites.other.officialArtwork?.front_default,
             contentDescription = null
         )
         Text(text = pokemonState.name)

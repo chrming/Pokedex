@@ -1,55 +1,31 @@
 package com.example.pokedex.di
 
-import android.app.Application
-import androidx.room.Room
 import com.example.pokedex.datasource.local.db.PokemonDatabase
-import com.example.pokedex.datasource.local.typeConverter.AttributesTypeConverter
 import com.example.pokedex.datasource.local.repository.IPokemonRepository
 import com.example.pokedex.datasource.local.repository.PokemonRepository
-import com.example.pokedex.datasource.network.PokemonApi
-import com.example.pokedex.datasource.network.repository.ApiPokemonRepository
-import com.example.pokedex.datasource.network.repository.IApiPokemonRepository
+import com.example.pokedex.datasource.network.api.IPokemonApi
+import com.example.pokedex.datasource.network.repository.IPokemonApiRepository
+import com.example.pokedex.datasource.network.repository.PokemonApiRepository
+import com.example.pokedex.datasource.paging.repository.PokemonPagingRepository
 import com.example.pokedex.screens.home.domain.useCase.HomeUseCaseWrapper
-import com.example.pokedex.screens.pokemonList.domain.useCase.*
-import com.example.pokedex.screens.pokemonList.domain.pager.PokemonListPagingSource
-import com.example.pokedex.screens.pokemonList.domain.pager.PokemonListRemoteMediator
+import com.example.pokedex.screens.pokemonList.domain.useCase.GetPokemonListUseCase
+import com.example.pokedex.screens.pokemonList.domain.useCase.PokemonListUseCaseWrapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-    @Provides
-    @Singleton
-    fun providePokemonListRemoteMediator(localRepo: IPokemonRepository, apiRepo: IApiPokemonRepository): PokemonListRemoteMediator {
-        return PokemonListRemoteMediator(localRepo, apiRepo)
-    }
+
+
 
     @Provides
     @Singleton
-    fun providePokemonListPagingSource(localRepo: IPokemonRepository, apiRepo: IApiPokemonRepository): PokemonListPagingSource {
-        return PokemonListPagingSource(localRepo, apiRepo)
-    }
-
-    @Provides
-    @Singleton
-    fun providePokemonApi(): PokemonApi {
-        return Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(PokemonApi::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideApiPokemonRepository(api: PokemonApi): IApiPokemonRepository {
-        return ApiPokemonRepository(api)
+    fun provideApiPokemonRepository(api: IPokemonApi): IPokemonApiRepository {
+        return PokemonApiRepository(api)
     }
 
     @Provides
@@ -58,37 +34,37 @@ class AppModule {
         return PokemonRepository(db.pokemonDao())
     }
 
+
+    @Provides
+    @Singleton
+    fun providePokemonPagingRepository(
+        api: IPokemonApiRepository,
+        db: PokemonDatabase
+    ): PokemonPagingRepository {
+        return PokemonPagingRepository(api, db)
+    }
+
     @Provides
     @Singleton
     fun providePokemonListUseCaseWrapper(
-        apiRepo: IApiPokemonRepository,
-        localRepo: IPokemonRepository
+        repository: PokemonPagingRepository
     ): PokemonListUseCaseWrapper {
         return PokemonListUseCaseWrapper(
-            getPokemonList = GetPokemonListUseCase(apiRepo, localRepo),
+            getPokemonList = GetPokemonListUseCase(repository),
         )
     }
-
 
     @Provides
     @Singleton
     fun provideHomeUseCaseWrapper(
-        apiRepo: IApiPokemonRepository,
+        apiRepo: IPokemonApiRepository,
         localRepo: IPokemonRepository
     ): HomeUseCaseWrapper {
         return HomeUseCaseWrapper(
-            getPokemon = com.example.pokedex.screens.home.domain.useCase.GetPokemonUseCase(apiRepo, localRepo),
+            getPokemon = com.example.pokedex.screens.home.domain.useCase.GetPokemonUseCase(
+                apiRepo,
+                localRepo
+            ),
         )
-    }
-
-    @Provides
-    @Singleton
-    fun providePokemonDatabase(app: Application): PokemonDatabase {
-        return Room.databaseBuilder(
-            app,
-            PokemonDatabase::class.java,
-            PokemonDatabase.DATABASE_NAME
-        ).addTypeConverter(AttributesTypeConverter())
-            .build()
     }
 }

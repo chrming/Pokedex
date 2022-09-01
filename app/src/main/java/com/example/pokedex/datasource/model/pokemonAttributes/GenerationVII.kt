@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 
 data class GenerationVII(
     @Embedded(prefix = "genvii_icons_")
-    val icons: Icons,
+    val icons: Icons?,
     @Embedded(prefix = "ulstrasun_ultramoon_")
     @SerializedName("ultra-sun-ultra-moon")
-    val ultraSunUltraMoon: EditionGenVII
+    val ultraSunUltraMoon: EditionGenVII?
 ){
     constructor():this(Icons(), EditionGenVII())
 }
