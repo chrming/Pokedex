@@ -1,5 +1,5 @@
 # Pokedex
-Pokedex android application to obtain information about Pokemons.
+An android application to obtain information about Pokemons.
 
 To run this application:
  - run Android Studio
