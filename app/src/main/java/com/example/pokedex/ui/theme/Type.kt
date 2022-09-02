@@ -39,12 +39,12 @@ val PokemonTypography = Typography(
     body1 = TextStyle(
         fontFamily = pokemonFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 20.sp
+        fontSize = 15.sp
     ),
     h1 = TextStyle(
         fontFamily = pokemonFont,
         fontWeight = FontWeight.Bold,
-        fontSize = 20.sp
+        fontSize = 15.sp
     )
     /* Other default text styles to override
     button = TextStyle(

@@ -7,6 +7,16 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
+
+// Pokemon Stats Colors
+val Health = Color(0xFFd53b48)
+val Attack = Color(0xFFffa625)
+val Defense = Color(0xFF0191e9)
+val Speed = Color(0xFF8fb0c4)
+val Experience = Color(0xFF3b8c3c)
+
+
+// Pokemon Types colors
 val Normal = Color(0xFF6E6E59)
 val LightNormal = Color(0xFF8E8E79)
 

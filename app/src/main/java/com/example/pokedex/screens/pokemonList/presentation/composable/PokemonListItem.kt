@@ -1,16 +1,22 @@
 package com.example.pokedex.screens.pokemonList.presentation.composable
 
+import android.util.Log
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
@@ -30,7 +36,8 @@ fun PokemonListItem(
     Card(
         modifier = modifier
             .height(120.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .border(1.dp, Black),
         onClick = onClick
     ) {
         Box(
@@ -43,8 +50,11 @@ fun PokemonListItem(
                 )
         ) {
             Row(modifier = Modifier.fillMaxSize()) {
-                Box(contentAlignment = Alignment.BottomCenter) {
+                Box(
+                    contentAlignment = Alignment.BottomCenter
+                ) {
                     SubcomposeAsyncImage(
+                        modifier = Modifier.background(colorByType(pokemon.types[0])),
                         model = pokemon.sprites.other.officialArtwork?.front_default,
                         contentDescription = null,
                         loading = {
@@ -61,7 +71,7 @@ fun PokemonListItem(
                             },
                             style = PokemonTypography.body1,
                             color = White,
-                            letterSpacing = 2.sp
+                            letterSpacing = 1.sp
                         )
                         Text(
                             modifier = Modifier,
@@ -72,21 +82,128 @@ fun PokemonListItem(
                             },
                             style = PokemonTypography.h1,
                             color = Black,
-                            letterSpacing = 2.sp
+                            letterSpacing = 1.sp
                         )
                     }
                 }
-                Row(modifier = Modifier.fillMaxHeight(), verticalAlignment = Alignment.Bottom) {
-                    pokemon.types.forEach {
-                        Chip(
-                            onClick = {/*TODO filter by this chip*/ },
-                            colors = ChipDefaults.chipColors(
-                                backgroundColor = colorByType(it)
-                            )
+                Spacer(modifier = Modifier.width(4.dp))
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Column(
+                        modifier = Modifier,
+                        verticalArrangement = Arrangement.SpaceAround,
+                        horizontalAlignment = Alignment.Start
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .width(300.dp)
+                                .padding(horizontal = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = it.type.name)
+                            Text(
+                                text = "HP",
+                                fontSize = 10.sp
+                            )
+                            LinearProgressIndicator(
+                                modifier = Modifier
+                                    .height(6.dp)
+                                    .border(1.dp, Black)
+                                    .shadow(5.dp),
+                                progress = pokemon.stats[0].base_stat.toFloat() / Pokemon.maxHp.toFloat(),
+                                color = Health
+                            )
+                            /*Text(
+                                text = "${pokemon.stats[0].base_stat} / ${Pokemon.maxHp}",
+                                fontSize = 12.sp
+                            )*/
                         }
-
+                        Row(
+                            modifier = Modifier
+                                .width(300.dp)
+                                .padding(horizontal = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Text(
+                                text = "ATK",
+                                fontSize = 10.sp
+                            )
+                            LinearProgressIndicator(
+                                modifier = Modifier
+                                    .height(6.dp)
+                                    .border(1.dp, Black)
+                                    .shadow(5.dp),
+                                progress = pokemon.stats[1].base_stat.toFloat() / Pokemon.maxAttack.toFloat(),
+                                color = Attack
+                            )
+                            /*Text(
+                                text = "${pokemon.stats[1].base_stat} / ${Pokemon.maxAttack}",
+                                fontSize = 12.sp
+                            )*/
+                        }
+                        Row(
+                            modifier = Modifier
+                                .width(300.dp)
+                                .padding(horizontal = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Text(
+                                text = "DEF",
+                                fontSize = 10.sp
+                            )
+                            LinearProgressIndicator(
+                                modifier = Modifier
+                                    .height(6.dp)
+                                    .border(1.dp, Black)
+                                    .shadow(5.dp),
+                                progress = pokemon.stats[2].base_stat.toFloat() / Pokemon.maxDefense.toFloat(),
+                                color = Defense
+                            )
+                            /*Text(
+                                text = "${pokemon.stats[2].base_stat} / ${Pokemon.maxDefense}",
+                                fontSize = 12.sp
+                            )*/
+                        }
+                    }
+                    Row(
+                        modifier = Modifier
+                            .width(300.dp)
+                            .padding(horizontal = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "TYPE",
+                            fontSize = 10.sp
+                        )
+                        Row() {
+                            pokemon.types.forEach {
+                                TextButton(
+                                    modifier = Modifier
+                                        .padding(2.dp)
+                                        .width(50.dp)
+                                        .height(20.dp),
+                                    onClick = {/*TODO filter by this chip*/ },
+                                    border = BorderStroke(1.dp, Black),
+                                    contentPadding = PaddingValues(2.dp),
+                                    colors = ButtonDefaults.buttonColors(colorByType(it))
+                                ) {
+                                    Text(
+                                        text = it.type.name.replaceFirstChar {
+                                            if (it.isLowerCase()) it.titlecase(
+                                                Locale.getDefault()
+                                            ) else it.toString()
+                                        },
+                                        fontSize = 10.sp
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             }
