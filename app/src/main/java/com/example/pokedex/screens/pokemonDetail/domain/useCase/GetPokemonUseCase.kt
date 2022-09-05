@@ -1,4 +1,4 @@
-package com.example.pokedex.screens.home.domain.useCase
+package com.example.pokedex.screens.pokemonDetail.domain.useCase
 
 import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.local.repository.IPokemonRepository

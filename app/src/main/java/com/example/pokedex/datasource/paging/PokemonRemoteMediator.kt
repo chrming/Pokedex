@@ -43,7 +43,6 @@ class PokemonRemoteMediator @Inject constructor(
                 }
                 APPEND -> {
                     val remoteKeys = getRemoteKeyForLastItem(state)
-                    Log.d("chm", "In ListScreen: \t${remoteKeys?.nextPage}")
                     val nextPage = remoteKeys?.nextPage
                         ?: return MediatorResult.Success(
                             endOfPaginationReached = remoteKeys != null

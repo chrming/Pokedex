@@ -7,7 +7,7 @@ import com.example.pokedex.datasource.network.api.IPokemonApi
 import com.example.pokedex.datasource.network.repository.IPokemonApiRepository
 import com.example.pokedex.datasource.network.repository.PokemonApiRepository
 import com.example.pokedex.datasource.paging.repository.PokemonPagingRepository
-import com.example.pokedex.screens.home.domain.useCase.HomeUseCaseWrapper
+import com.example.pokedex.screens.pokemonDetail.domain.useCase.PokemonDetailUseCaseWrapper
 import com.example.pokedex.screens.pokemonList.domain.useCase.GetPokemonListUseCase
 import com.example.pokedex.screens.pokemonList.domain.useCase.PokemonListUseCaseWrapper
 import dagger.Module
@@ -59,9 +59,9 @@ class AppModule {
     fun provideHomeUseCaseWrapper(
         apiRepo: IPokemonApiRepository,
         localRepo: IPokemonRepository
-    ): HomeUseCaseWrapper {
-        return HomeUseCaseWrapper(
-            getPokemon = com.example.pokedex.screens.home.domain.useCase.GetPokemonUseCase(
+    ): PokemonDetailUseCaseWrapper {
+        return PokemonDetailUseCaseWrapper(
+            getPokemon = com.example.pokedex.screens.pokemonDetail.domain.useCase.GetPokemonUseCase(
                 apiRepo,
                 localRepo
             ),
