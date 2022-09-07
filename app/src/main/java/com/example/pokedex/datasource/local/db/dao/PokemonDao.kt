@@ -1,16 +1,17 @@
 package com.example.pokedex.datasource.local.db.dao
 
 import androidx.paging.PagingSource
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.example.pokedex.datasource.model.Pokemon
-import com.example.pokedex.datasource.model.PokemonUiItem
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PokemonDao {
 
-    @Query("SELECT * FROM pokemon WHERE (id OR name) = :idOrName")
-    suspend fun getPokemon(idOrName: String): Pokemon
+    @Query("SELECT * FROM pokemon WHERE name =:name")
+    suspend fun getPokemon(name: String): Pokemon
 
     @Query("DELETE FROM POKEMON")
     suspend fun deleteAllPokemon()

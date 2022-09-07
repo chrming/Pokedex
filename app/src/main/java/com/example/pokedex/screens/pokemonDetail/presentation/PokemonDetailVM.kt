@@ -1,6 +1,5 @@
 package com.example.pokedex.screens.pokemonDetail.presentation
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -26,7 +25,7 @@ class PokemonDetailVM @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val pokemonIdOrName: PokemonDetailScreenNavArgs = savedStateHandle.navArgs()
+    private val pokemonPassedName: PokemonDetailScreenNavArgs = savedStateHandle.navArgs()
 
     private val _pokemonState = mutableStateOf(PokemonState())
     val pokemonState = _pokemonState
@@ -34,7 +33,7 @@ class PokemonDetailVM @Inject constructor(
     private var fetchJob: Job? = null
 
     init {
-        fetchPokemon(pokemonIdOrName.nameOrId)
+        fetchPokemon(pokemonPassedName.name)
     }
 
     fun onEvent(event: PokemonDetailEvent) {
@@ -60,13 +59,12 @@ class PokemonDetailVM @Inject constructor(
                     pokemonState.value.copy(expanded = ExpandedState(sprites = !pokemonState.value.expanded.sprites))
             }
         }
-        Log.d("chm", "${pokemonState.value.expanded}")
     }
 
-    private fun fetchPokemon(idOrName: String) {
+    private fun fetchPokemon(name: String) {
         fetchJob?.cancel()
         fetchJob = CoroutineScope(Dispatchers.IO).launch {
-            useCase.getPokemon(idOrName = idOrName).also { pokemon ->
+            useCase.getPokemonByName(name = pokemonPassedName.name).also { pokemon ->
                 _pokemonState.value = pokemonState.value.copy(
                     pokemon = pokemon,
                     info = PokemonExtendedInfo(

@@ -7,7 +7,7 @@ import com.example.pokedex.const.Constants.POKEMON_REMOTE_KEYS_TABLE
 @Entity(tableName = POKEMON_REMOTE_KEYS_TABLE)
 data class PokemonRemoteKeys(
     @PrimaryKey(autoGenerate = false)
-    val id: String,
+    val id: Int,
     val prevPage: Int?,
     val nextPage: Int?
 )

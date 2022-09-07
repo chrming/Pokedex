@@ -61,7 +61,7 @@ class AppModule {
         localRepo: IPokemonRepository
     ): PokemonDetailUseCaseWrapper {
         return PokemonDetailUseCaseWrapper(
-            getPokemon = com.example.pokedex.screens.pokemonDetail.domain.useCase.GetPokemonUseCase(
+            getPokemonByName = com.example.pokedex.screens.pokemonDetail.domain.useCase.GetPokemonByNameUseCase(
                 apiRepo,
                 localRepo
             ),

@@ -3,7 +3,9 @@ package com.example.pokedex.datasource.network.api
 import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.network.model.PokemonListResponse
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PokemonApi : IPokemonApi {
 

@@ -5,6 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Error
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,6 +24,9 @@ import com.example.pokedex.ui.theme.*
 import java.util.*
 
 
+//TODO manage error and loading with assets
+//TODO add fixed size of image
+//TODO Refactor
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PokemonListItem(
@@ -55,6 +60,10 @@ fun PokemonListItem(
                         contentDescription = null,
                         loading = {
                             CircularProgressIndicator()
+                        },
+                        error = {
+
+                            Icon(imageVector = Icons.Default.Error, contentDescription = null)
                         }
                     )
                     Box() {

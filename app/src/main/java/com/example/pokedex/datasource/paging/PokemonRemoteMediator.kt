@@ -1,5 +1,6 @@
 package com.example.pokedex.datasource.paging
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.LoadType.*
@@ -29,10 +30,12 @@ class PokemonRemoteMediator(
         return try {
             val currentPage = when (loadType) {
                 REFRESH -> {
+                    Log.d("chm", "Refreshing")
                     val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
                     remoteKeys?.nextPage?.minus(1) ?: 0
                 }
                 PREPEND -> {
+                    Log.d("chm", "Prepending")
                     val remoteKeys = getRemoteKeyForFirstItem(state)
                     val prevPage = remoteKeys?.prevPage
                         ?: return MediatorResult.Success(
@@ -41,6 +44,7 @@ class PokemonRemoteMediator(
                     prevPage
                 }
                 APPEND -> {
+                    Log.d("chm", "Appending")
                     val remoteKeys = getRemoteKeyForLastItem(state)
                     val nextPage = remoteKeys?.nextPage
                         ?: return MediatorResult.Success(
@@ -49,34 +53,40 @@ class PokemonRemoteMediator(
                     nextPage
                 }
             }
+            Log.d("chm", "Current Page: $currentPage")
 
             val response = pokemonApiRepo.getAllPokemons(
                 offset = currentPage * ITEM_PER_PAGE,
                 pageSize = ITEM_PER_PAGE
             )
+            Log.d("chm", "Response from API: ${response.size}")
+
             val endOfPaginationReached = response.isEmpty()
 
             val prevPage = if (currentPage == 0) null else currentPage - 1
             val nextPage = if (endOfPaginationReached) null else currentPage + 1
 
+            Log.d("chm", "Next , Previous : ${nextPage} ${prevPage}")
+
             pokemonDatabase.withTransaction {
-//                if (loadType == REFRESH) {
-//                    pokemonDao.deleteAllPokemon()
-//                    pokemonRemoteKeyDao.deleteAllRemoteKeys()
-//                }
+                if (loadType == REFRESH) {
+                    pokemonDao.deleteAllPokemon()
+                    pokemonRemoteKeyDao.deleteAllRemoteKeys()
+                }
                 val keys = response.map {
                     PokemonRemoteKeys(
-                        id = it.id.toString(),
+                        id = it.id,
                         prevPage = prevPage,
                         nextPage = nextPage
                     )
-
                 }
+
                 pokemonRemoteKeyDao.addAllRemoteKeys(keys)
                 pokemonDao.addPokemons(response)
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Exception) {
+            Log.d("chm", "Error occurred: ${e}")
             return MediatorResult.Error(e)
         }
     }

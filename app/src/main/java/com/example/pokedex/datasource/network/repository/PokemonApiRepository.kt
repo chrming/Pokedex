@@ -1,6 +1,5 @@
 package com.example.pokedex.datasource.network.repository
 
-import android.util.Log
 import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.network.api.IPokemonApi
 import retrofit2.Response

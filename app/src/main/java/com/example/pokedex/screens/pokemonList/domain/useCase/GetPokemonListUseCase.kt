@@ -1,7 +1,6 @@
 package com.example.pokedex.screens.pokemonList.domain.useCase
 
 import androidx.paging.PagingData
-import com.example.pokedex.const.Constants.BASE_URL_LENGTH
 import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.paging.repository.PokemonPagingRepository
 import kotlinx.coroutines.flow.Flow

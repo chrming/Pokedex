@@ -1,6 +1,6 @@
 package com.example.pokedex.screens.pokemonDetail.presentation.state
 
-import com.example.pokedex.datasource.model.pokemonAttributes.*
+import com.example.pokedex.datasource.model.pokemonAttributes.Attribute
 
 data class PokemonExtendedInfo(
     val abilities: List<Attribute> = emptyList(),

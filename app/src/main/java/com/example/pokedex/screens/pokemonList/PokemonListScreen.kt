@@ -28,7 +28,7 @@ fun PokemonListScreen(
     viewModel: PokemonListVM = hiltViewModel(),
     navigator: DestinationsNavigator,
 ) {
-    val pokemonListState = viewModel.pokemonListState.pokemonList.collectAsLazyPagingItems()
+    val pokemonListState = viewModel.pokemons.collectAsLazyPagingItems() //.pokemonListState.pokemonList.collectAsLazyPagingItems()
     val filterState = viewModel.filterState
 
     Scaffold(

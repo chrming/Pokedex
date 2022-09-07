@@ -1,16 +1,15 @@
 package com.example.pokedex.screens.pokemonDetail
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.*
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -26,9 +25,8 @@ import com.example.pokedex.screens.pokemonDetail.presentation.composables.Select
 import com.example.pokedex.screens.pokemonDetail.presentation.composables.StatsSection
 import com.example.pokedex.screens.pokemonDetail.presentation.composables.extendedInfoSection
 import com.example.pokedex.screens.pokemonDetail.presentation.event.PokemonDetailEvent
-import com.example.pokedex.screens.pokemonList.presentation.composable.colorByType
 import com.example.pokedex.screens.pokemonList.presentation.composable.colorListByType
-import com.example.pokedex.ui.theme.*
+import com.example.pokedex.ui.theme.PokemonTypography
 import com.ramcosta.composedestinations.annotation.Destination
 import java.util.*
 

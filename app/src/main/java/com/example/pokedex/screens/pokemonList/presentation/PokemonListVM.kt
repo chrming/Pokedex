@@ -5,12 +5,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.screens.pokemonList.domain.useCase.PokemonListUseCaseWrapper
 import com.example.pokedex.screens.pokemonList.presentation.event.PokemonListEvent
 import com.example.pokedex.screens.pokemonList.presentation.state.FilterState
 import com.example.pokedex.screens.pokemonList.presentation.state.PokemonListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,6 +24,7 @@ class PokemonListVM @Inject constructor(
     private val useCase: PokemonListUseCaseWrapper,
 ) : ViewModel() {
 
+    var pokemons: Flow<PagingData<Pokemon>> = useCase.getPokemonList()
     var pokemonListState by mutableStateOf(PokemonListState())
         private set
     var filterState by mutableStateOf(FilterState())

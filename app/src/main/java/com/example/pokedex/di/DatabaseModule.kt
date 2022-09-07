@@ -1,6 +1,5 @@
 package com.example.pokedex.di
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.example.pokedex.const.Constants.POKEMON_DATABASE

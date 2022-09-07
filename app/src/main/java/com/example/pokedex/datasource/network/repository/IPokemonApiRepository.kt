@@ -1,7 +1,6 @@
 package com.example.pokedex.datasource.network.repository
 
 import com.example.pokedex.datasource.model.Pokemon
-import com.example.pokedex.datasource.network.model.PokemonListResponse
 import retrofit2.Response
 
 interface IPokemonApiRepository {

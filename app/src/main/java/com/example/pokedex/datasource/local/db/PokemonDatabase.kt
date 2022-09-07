@@ -6,10 +6,10 @@ import androidx.room.TypeConverters
 import com.example.pokedex.datasource.local.db.dao.PokemonDao
 import com.example.pokedex.datasource.local.db.dao.PokemonRemoteKeyDao
 import com.example.pokedex.datasource.local.db.dao.PokemonUiItemDao
+import com.example.pokedex.datasource.local.typeConverter.AttributesTypeConverter
 import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.model.PokemonRemoteKeys
 import com.example.pokedex.datasource.model.PokemonUiItem
-import com.example.pokedex.datasource.local.typeConverter.AttributesTypeConverter
 
 @Database(entities = [Pokemon::class, PokemonUiItem::class, PokemonRemoteKeys::class], version = 1)
 @TypeConverters(AttributesTypeConverter::class)

@@ -1,8 +1,8 @@
 package com.example.pokedex.di
 
-import com.example.pokedex.datasource.network.api.PokemonApi
 import com.example.pokedex.const.Constants.BASE_URL
 import com.example.pokedex.datasource.network.api.IPokemonApi
+import com.example.pokedex.datasource.network.api.PokemonApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
