@@ -1,0 +1,548 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "84144d5a3e4899628ca9bae50dbdcbc9",
+    "entities": [
+      {
+        "tableName": "PokemonForUi",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `sprite` TEXT NOT NULL, `url` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprite",
+            "columnName": "sprite",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PokemonListResponse",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`count` INTEGER NOT NULL, `next` TEXT NOT NULL, PRIMARY KEY(`next`))",
+        "fields": [
+          {
+            "fieldPath": "count",
+            "columnName": "count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "next",
+            "columnName": "next",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "next"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Pokemon",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`base_experience` INTEGER NOT NULL, `height` INTEGER NOT NULL, `id` INTEGER NOT NULL, `is_default` INTEGER NOT NULL, `location_area_encounters` TEXT NOT NULL, `name` TEXT NOT NULL, `order` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `species_name` TEXT NOT NULL, `species_url` TEXT NOT NULL, `back_default` TEXT NOT NULL, `back_shiny` TEXT NOT NULL, `front_default` TEXT NOT NULL, `front_shiny` TEXT NOT NULL, `dream_world_frond_default` TEXT NOT NULL, `home_front_default` TEXT NOT NULL, `home_front_shiny` TEXT NOT NULL, `official_artwork_frond_default` TEXT NOT NULL, `red_blue_back_default` TEXT NOT NULL, `red_blue_back_gray` TEXT NOT NULL, `red_blue_front_default` TEXT NOT NULL, `red_blue_front_gray` TEXT NOT NULL, `yellow_back_default` TEXT NOT NULL, `yellow_back_gray` TEXT NOT NULL, `yellow_front_default` TEXT NOT NULL, `yellow_front_gray` TEXT NOT NULL, `crystal_back_default` TEXT NOT NULL, `crystal_back_shiny` TEXT NOT NULL, `crystal_front_default` TEXT NOT NULL, `crystal_front_shiny` TEXT NOT NULL, `gold_back_default` TEXT NOT NULL, `gold_back_shiny` TEXT NOT NULL, `gold_front_default` TEXT NOT NULL, `gold_front_shiny` TEXT NOT NULL, `silver_back_default` TEXT NOT NULL, `silver_back_shiny` TEXT NOT NULL, `silver_front_default` TEXT NOT NULL, `silver_front_shiny` TEXT NOT NULL, `emerald_front_default` TEXT NOT NULL, `emerald_front_shiny` TEXT NOT NULL, `firered_leafgreen_back_default` TEXT NOT NULL, `firered_leafgreen_back_shiny` TEXT NOT NULL, `firered_leafgreen_front_default` TEXT NOT NULL, `firered_leafgreen_front_shiny` TEXT NOT NULL, `ruby_sapphire_back_default` TEXT NOT NULL, `ruby_sapphire_back_shiny` TEXT NOT NULL, `ruby_sapphire_front_default` TEXT NOT NULL, `ruby_sapphire_front_shiny` TEXT NOT NULL, `diamond_pearl_back_default` TEXT NOT NULL, `diamond_pearl_back_shiny` TEXT NOT NULL, `diamond_pearl_front_default` TEXT NOT NULL, `diamond_pearl_front_shiny` TEXT NOT NULL, `heartgold_soulsilver_back_default` TEXT NOT NULL, `heartgold_soulsilver_back_shiny` TEXT NOT NULL, `heartgold_soulsilver_front_default` TEXT NOT NULL, `heartgold_soulsilver_front_shiny` TEXT NOT NULL, `platinum_back_default` TEXT NOT NULL, `platinum_back_shiny` TEXT NOT NULL, `platinum_front_default` TEXT NOT NULL, `platinum_front_shiny` TEXT NOT NULL, `balckwhite_back_default` TEXT NOT NULL, `balckwhite_back_shiny` TEXT NOT NULL, `balckwhite_front_default` TEXT NOT NULL, `balckwhite_front_shiny` TEXT NOT NULL, `balckwhite_animated_back_default` TEXT NOT NULL, `balckwhite_animated_back_shiny` TEXT NOT NULL, `balckwhite_animated_front_default` TEXT NOT NULL, `balckwhite_animated_front_shiny` TEXT NOT NULL, `omegaruby_alphasapphire_front_default` TEXT NOT NULL, `omegaruby_alphasapphire_front_shiny` TEXT NOT NULL, `xy_front_default` TEXT NOT NULL, `xy_front_shiny` TEXT NOT NULL, `genvii_icons_front_default` TEXT NOT NULL, `ulstrasun_ultramoon_front_default` TEXT NOT NULL, `ulstrasun_ultramoon_front_shiny` TEXT NOT NULL, `genviii_icons_front_default` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "base_experience",
+            "columnName": "base_experience",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "is_default",
+            "columnName": "is_default",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "location_area_encounters",
+            "columnName": "location_area_encounters",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "order",
+            "columnName": "order",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "species.name",
+            "columnName": "species_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "species.url",
+            "columnName": "species_url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.back_default",
+            "columnName": "back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.back_shiny",
+            "columnName": "back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.front_default",
+            "columnName": "front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.front_shiny",
+            "columnName": "front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.other.dream_world.front_default",
+            "columnName": "dream_world_frond_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.other.home.front_default",
+            "columnName": "home_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.other.home.front_shiny",
+            "columnName": "home_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.other.officialArtwork.front_default",
+            "columnName": "official_artwork_frond_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.back_default",
+            "columnName": "red_blue_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.back_gray",
+            "columnName": "red_blue_back_gray",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.front_default",
+            "columnName": "red_blue_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.front_gray",
+            "columnName": "red_blue_front_gray",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.back_default",
+            "columnName": "yellow_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.back_gray",
+            "columnName": "yellow_back_gray",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.front_default",
+            "columnName": "yellow_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.front_gray",
+            "columnName": "yellow_front_gray",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.back_default",
+            "columnName": "crystal_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.back_shiny",
+            "columnName": "crystal_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.front_default",
+            "columnName": "crystal_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.front_shiny",
+            "columnName": "crystal_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.gold.back_default",
+            "columnName": "gold_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.gold.back_shiny",
+            "columnName": "gold_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.gold.front_default",
+            "columnName": "gold_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.gold.front_shiny",
+            "columnName": "gold_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.silver.back_default",
+            "columnName": "silver_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.silver.back_shiny",
+            "columnName": "silver_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.silver.front_default",
+            "columnName": "silver_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.silver.front_shiny",
+            "columnName": "silver_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.emerald.front_default",
+            "columnName": "emerald_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.emerald.front_shiny",
+            "columnName": "emerald_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.fireredLeafgreen.back_default",
+            "columnName": "firered_leafgreen_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.fireredLeafgreen.back_shiny",
+            "columnName": "firered_leafgreen_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.fireredLeafgreen.front_default",
+            "columnName": "firered_leafgreen_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.fireredLeafgreen.front_shiny",
+            "columnName": "firered_leafgreen_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.rubySapphire.back_default",
+            "columnName": "ruby_sapphire_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.rubySapphire.back_shiny",
+            "columnName": "ruby_sapphire_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.rubySapphire.front_default",
+            "columnName": "ruby_sapphire_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.rubySapphire.front_shiny",
+            "columnName": "ruby_sapphire_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.back_default",
+            "columnName": "diamond_pearl_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.back_shiny",
+            "columnName": "diamond_pearl_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.front_default",
+            "columnName": "diamond_pearl_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.front_shiny",
+            "columnName": "diamond_pearl_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.back_default",
+            "columnName": "heartgold_soulsilver_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.back_shiny",
+            "columnName": "heartgold_soulsilver_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.front_default",
+            "columnName": "heartgold_soulsilver_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.front_shiny",
+            "columnName": "heartgold_soulsilver_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.back_default",
+            "columnName": "platinum_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.back_shiny",
+            "columnName": "platinum_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.front_default",
+            "columnName": "platinum_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.front_shiny",
+            "columnName": "platinum_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.back_default",
+            "columnName": "balckwhite_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.back_shiny",
+            "columnName": "balckwhite_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.front_default",
+            "columnName": "balckwhite_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.front_shiny",
+            "columnName": "balckwhite_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.back_default",
+            "columnName": "balckwhite_animated_back_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.back_shiny",
+            "columnName": "balckwhite_animated_back_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.front_default",
+            "columnName": "balckwhite_animated_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.front_shiny",
+            "columnName": "balckwhite_animated_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.omegarubyAlphasapphire.front_default",
+            "columnName": "omegaruby_alphasapphire_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.omegarubyAlphasapphire.front_shiny",
+            "columnName": "omegaruby_alphasapphire_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.xy.front_default",
+            "columnName": "xy_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.xy.front_shiny",
+            "columnName": "xy_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationVII.icons.front_default",
+            "columnName": "genvii_icons_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationVII.ultraSunUltraMoon.front_default",
+            "columnName": "ulstrasun_ultramoon_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationVII.ultraSunUltraMoon.front_shiny",
+            "columnName": "ulstrasun_ultramoon_front_shiny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.versions.generationVIII.icons.front_default",
+            "columnName": "genviii_icons_front_default",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '84144d5a3e4899628ca9bae50dbdcbc9')"
+    ]
+  }
+}

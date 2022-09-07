@@ -1,0 +1,878 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "c76d479cf18f09013ec1540416e41856",
+    "entities": [
+      {
+        "tableName": "Pokemon",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`abilities` TEXT NOT NULL, `base_experience` INTEGER NOT NULL, `forms` TEXT NOT NULL, `game_indices` TEXT NOT NULL, `height` INTEGER NOT NULL, `held_items` TEXT NOT NULL, `id` INTEGER NOT NULL, `is_default` INTEGER NOT NULL, `location_area_encounters` TEXT NOT NULL, `moves` TEXT NOT NULL, `name` TEXT NOT NULL, `order` INTEGER NOT NULL, `past_types` TEXT NOT NULL, `stats` TEXT NOT NULL, `types` TEXT NOT NULL, `weight` INTEGER NOT NULL, `species_name` TEXT NOT NULL, `species_url` TEXT NOT NULL, `back_female` TEXT, `back_default` TEXT, `back_shiny` TEXT, `back_shiny_female` TEXT, `front_default` TEXT, `front_female` TEXT, `front_shiny` TEXT, `front_shiny_female` TEXT, `dream_world_front_default` TEXT, `dream_world_front_female` TEXT, `home_front_default` TEXT, `home_front_female` TEXT, `home_front_shiny` TEXT, `home_front_shiny_female` TEXT, `official_artwork_front_default` TEXT, `red_blue_back_default` TEXT, `red_blue_back_gray` TEXT, `red_blue_back_transparent` TEXT, `red_blue_front_default` TEXT, `red_blue_front_gray` TEXT, `red_blue_front_transparent` TEXT, `yellow_back_default` TEXT, `yellow_back_gray` TEXT, `yellow_back_transparent` TEXT, `yellow_front_default` TEXT, `yellow_front_gray` TEXT, `yellow_front_transparent` TEXT, `crystal_back_default` TEXT, `crystal_back_shiny` TEXT, `crystal_back_shiny_transparent` TEXT, `crystal_back_transparent` TEXT, `crystal_front_default` TEXT, `crystal_front_shiny` TEXT, `crystal_front_shiny_transparent` TEXT, `crystal_front_transparent` TEXT, `gold_back_default` TEXT, `gold_back_shiny` TEXT, `gold_front_default` TEXT, `gold_front_shiny` TEXT, `gold_front_transparent` TEXT, `silver_back_default` TEXT, `silver_back_shiny` TEXT, `silver_front_default` TEXT, `silver_front_shiny` TEXT, `silver_front_transparent` TEXT, `emerald_front_default` TEXT, `emerald_front_shiny` TEXT, `firered_leafgreen_back_default` TEXT, `firered_leafgreen_back_shiny` TEXT, `firered_leafgreen_front_default` TEXT, `firered_leafgreen_front_shiny` TEXT, `ruby_sapphire_back_default` TEXT, `ruby_sapphire_back_shiny` TEXT, `ruby_sapphire_front_default` TEXT, `ruby_sapphire_front_shiny` TEXT, `diamond_pearl_back_default` TEXT, `diamond_pearl_back_female` TEXT, `diamond_pearl_back_shiny` TEXT, `diamond_pearl_back_shiny_female` TEXT, `diamond_pearl_front_default` TEXT, `diamond_pearl_front_female` TEXT, `diamond_pearl_front_shiny` TEXT, `diamond_pearl_front_shiny_female` TEXT, `heartgold_soulsilver_back_default` TEXT, `heartgold_soulsilver_back_female` TEXT, `heartgold_soulsilver_back_shiny` TEXT, `heartgold_soulsilver_back_shiny_female` TEXT, `heartgold_soulsilver_front_default` TEXT, `heartgold_soulsilver_front_female` TEXT, `heartgold_soulsilver_front_shiny` TEXT, `heartgold_soulsilver_front_shiny_female` TEXT, `platinum_back_default` TEXT, `platinum_back_female` TEXT, `platinum_back_shiny` TEXT, `platinum_back_shiny_female` TEXT, `platinum_front_default` TEXT, `platinum_front_female` TEXT, `platinum_front_shiny` TEXT, `platinum_front_shiny_female` TEXT, `balckwhite_back_default` TEXT, `balckwhite_back_female` TEXT, `balckwhite_back_shiny` TEXT, `balckwhite_back_shiny_female` TEXT, `balckwhite_front_default` TEXT, `balckwhite_front_female` TEXT, `balckwhite_front_shiny` TEXT, `balckwhite_front_shiny_female` TEXT, `balckwhite_animated_back_default` TEXT, `balckwhite_animated_back_female` TEXT, `balckwhite_animated_back_shiny` TEXT, `balckwhite_animated_back_shiny_female` TEXT, `balckwhite_animated_front_default` TEXT, `balckwhite_animated_front_female` TEXT, `balckwhite_animated_front_shiny` TEXT, `balckwhite_animated_front_shiny_female` TEXT, `omegaruby_alphasapphire_front_default` TEXT, `omegaruby_alphasapphire_front_female` TEXT, `omegaruby_alphasapphire_front_shiny` TEXT, `omegaruby_alphasapphire_front_shiny_female` TEXT, `xy_front_default` TEXT, `xy_front_female` TEXT, `xy_front_shiny` TEXT, `xy_front_shiny_female` TEXT, `genvii_icons_front_default` TEXT, `genvii_icons_front_female` TEXT, `ulstrasun_ultramoon_front_default` TEXT, `ulstrasun_ultramoon_front_female` TEXT, `ulstrasun_ultramoon_front_shiny` TEXT, `ulstrasun_ultramoon_front_shiny_female` TEXT, `genviii_icons_front_default` TEXT, `genviii_icons_front_female` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "abilities",
+            "columnName": "abilities",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "base_experience",
+            "columnName": "base_experience",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "forms",
+            "columnName": "forms",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "game_indices",
+            "columnName": "game_indices",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "held_items",
+            "columnName": "held_items",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "is_default",
+            "columnName": "is_default",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "location_area_encounters",
+            "columnName": "location_area_encounters",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "moves",
+            "columnName": "moves",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "order",
+            "columnName": "order",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "past_types",
+            "columnName": "past_types",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats",
+            "columnName": "stats",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "types",
+            "columnName": "types",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "species.name",
+            "columnName": "species_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "species.url",
+            "columnName": "species_url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprites.back_female",
+            "columnName": "back_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.back_default",
+            "columnName": "back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.back_shiny",
+            "columnName": "back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.back_shiny_female",
+            "columnName": "back_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.front_default",
+            "columnName": "front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.front_female",
+            "columnName": "front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.front_shiny",
+            "columnName": "front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.front_shiny_female",
+            "columnName": "front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.other.dream_world.front_default",
+            "columnName": "dream_world_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.other.dream_world.front_female",
+            "columnName": "dream_world_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.other.home.front_default",
+            "columnName": "home_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.other.home.front_female",
+            "columnName": "home_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.other.home.front_shiny",
+            "columnName": "home_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.other.home.front_shiny_female",
+            "columnName": "home_front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.other.officialArtwork.front_default",
+            "columnName": "official_artwork_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.back_default",
+            "columnName": "red_blue_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.back_gray",
+            "columnName": "red_blue_back_gray",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.back_transparent",
+            "columnName": "red_blue_back_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.front_default",
+            "columnName": "red_blue_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.front_gray",
+            "columnName": "red_blue_front_gray",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.redBlue.front_transparent",
+            "columnName": "red_blue_front_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.back_default",
+            "columnName": "yellow_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.back_gray",
+            "columnName": "yellow_back_gray",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.back_transparent",
+            "columnName": "yellow_back_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.front_default",
+            "columnName": "yellow_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.front_gray",
+            "columnName": "yellow_front_gray",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationI.yellow.front_transparent",
+            "columnName": "yellow_front_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.back_default",
+            "columnName": "crystal_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.back_shiny",
+            "columnName": "crystal_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.back_shiny_transparent",
+            "columnName": "crystal_back_shiny_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.back_transparent",
+            "columnName": "crystal_back_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.front_default",
+            "columnName": "crystal_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.front_shiny",
+            "columnName": "crystal_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.front_shiny_transparent",
+            "columnName": "crystal_front_shiny_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.crystal.front_transparent",
+            "columnName": "crystal_front_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.gold.back_default",
+            "columnName": "gold_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.gold.back_shiny",
+            "columnName": "gold_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.gold.front_default",
+            "columnName": "gold_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.gold.front_shiny",
+            "columnName": "gold_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.gold.front_transparent",
+            "columnName": "gold_front_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.silver.back_default",
+            "columnName": "silver_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.silver.back_shiny",
+            "columnName": "silver_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.silver.front_default",
+            "columnName": "silver_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.silver.front_shiny",
+            "columnName": "silver_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationII.silver.front_transparent",
+            "columnName": "silver_front_transparent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.emerald.front_default",
+            "columnName": "emerald_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.emerald.front_shiny",
+            "columnName": "emerald_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.fireredLeafgreen.back_default",
+            "columnName": "firered_leafgreen_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.fireredLeafgreen.back_shiny",
+            "columnName": "firered_leafgreen_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.fireredLeafgreen.front_default",
+            "columnName": "firered_leafgreen_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.fireredLeafgreen.front_shiny",
+            "columnName": "firered_leafgreen_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.rubySapphire.back_default",
+            "columnName": "ruby_sapphire_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.rubySapphire.back_shiny",
+            "columnName": "ruby_sapphire_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.rubySapphire.front_default",
+            "columnName": "ruby_sapphire_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIII.rubySapphire.front_shiny",
+            "columnName": "ruby_sapphire_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.back_default",
+            "columnName": "diamond_pearl_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.back_female",
+            "columnName": "diamond_pearl_back_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.back_shiny",
+            "columnName": "diamond_pearl_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.back_shiny_female",
+            "columnName": "diamond_pearl_back_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.front_default",
+            "columnName": "diamond_pearl_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.front_female",
+            "columnName": "diamond_pearl_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.front_shiny",
+            "columnName": "diamond_pearl_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.diamondPearl.front_shiny_female",
+            "columnName": "diamond_pearl_front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.back_default",
+            "columnName": "heartgold_soulsilver_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.back_female",
+            "columnName": "heartgold_soulsilver_back_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.back_shiny",
+            "columnName": "heartgold_soulsilver_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.back_shiny_female",
+            "columnName": "heartgold_soulsilver_back_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.front_default",
+            "columnName": "heartgold_soulsilver_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.front_female",
+            "columnName": "heartgold_soulsilver_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.front_shiny",
+            "columnName": "heartgold_soulsilver_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.heartgoldSoulsilver.front_shiny_female",
+            "columnName": "heartgold_soulsilver_front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.back_default",
+            "columnName": "platinum_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.back_female",
+            "columnName": "platinum_back_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.back_shiny",
+            "columnName": "platinum_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.back_shiny_female",
+            "columnName": "platinum_back_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.front_default",
+            "columnName": "platinum_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.front_female",
+            "columnName": "platinum_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.front_shiny",
+            "columnName": "platinum_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationIV.platinum.front_shiny_female",
+            "columnName": "platinum_front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.back_default",
+            "columnName": "balckwhite_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.back_female",
+            "columnName": "balckwhite_back_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.back_shiny",
+            "columnName": "balckwhite_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.back_shiny_female",
+            "columnName": "balckwhite_back_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.front_default",
+            "columnName": "balckwhite_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.front_female",
+            "columnName": "balckwhite_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.front_shiny",
+            "columnName": "balckwhite_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.front_shiny_female",
+            "columnName": "balckwhite_front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.back_default",
+            "columnName": "balckwhite_animated_back_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.back_female",
+            "columnName": "balckwhite_animated_back_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.back_shiny",
+            "columnName": "balckwhite_animated_back_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.back_shiny_female",
+            "columnName": "balckwhite_animated_back_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.front_default",
+            "columnName": "balckwhite_animated_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.front_female",
+            "columnName": "balckwhite_animated_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.front_shiny",
+            "columnName": "balckwhite_animated_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationV.blackWhite.animated.front_shiny_female",
+            "columnName": "balckwhite_animated_front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.omegarubyAlphasapphire.front_default",
+            "columnName": "omegaruby_alphasapphire_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.omegarubyAlphasapphire.front_female",
+            "columnName": "omegaruby_alphasapphire_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.omegarubyAlphasapphire.front_shiny",
+            "columnName": "omegaruby_alphasapphire_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.omegarubyAlphasapphire.front_shiny_female",
+            "columnName": "omegaruby_alphasapphire_front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.xy.front_default",
+            "columnName": "xy_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.xy.front_female",
+            "columnName": "xy_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.xy.front_shiny",
+            "columnName": "xy_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVI.xy.front_shiny_female",
+            "columnName": "xy_front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVII.icons.front_default",
+            "columnName": "genvii_icons_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVII.icons.front_female",
+            "columnName": "genvii_icons_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVII.ultraSunUltraMoon.front_default",
+            "columnName": "ulstrasun_ultramoon_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVII.ultraSunUltraMoon.front_female",
+            "columnName": "ulstrasun_ultramoon_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVII.ultraSunUltraMoon.front_shiny",
+            "columnName": "ulstrasun_ultramoon_front_shiny",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVII.ultraSunUltraMoon.front_shiny_female",
+            "columnName": "ulstrasun_ultramoon_front_shiny_female",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVIII.icons.front_default",
+            "columnName": "genviii_icons_front_default",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sprites.versions.generationVIII.icons.front_female",
+            "columnName": "genviii_icons_front_female",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pokemon_ui_item_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `officialArtwork` TEXT NOT NULL, `types` TEXT NOT NULL, `url` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialArtwork",
+            "columnName": "officialArtwork",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "types",
+            "columnName": "types",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pokemon_remote_keys_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `prevPage` INTEGER, `nextPage` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prevPage",
+            "columnName": "prevPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextPage",
+            "columnName": "nextPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c76d479cf18f09013ec1540416e41856')"
+    ]
+  }
+}
