@@ -1,6 +1,5 @@
 package com.example.pokedex.datasource.paging
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.LoadType.*
@@ -12,10 +11,10 @@ import com.example.pokedex.datasource.local.db.PokemonDatabase
 import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.model.PokemonRemoteKeys
 import com.example.pokedex.datasource.network.repository.IPokemonApiRepository
-import javax.inject.Inject
 
+// TODO on REFRESH remoteKeys is always null
 @OptIn(ExperimentalPagingApi::class)
-class PokemonRemoteMediator @Inject constructor(
+class PokemonRemoteMediator(
     private val pokemonApiRepo: IPokemonApiRepository,
     private val pokemonDatabase: PokemonDatabase
 ) : RemoteMediator<Int, Pokemon>() {
@@ -61,10 +60,10 @@ class PokemonRemoteMediator @Inject constructor(
             val nextPage = if (endOfPaginationReached) null else currentPage + 1
 
             pokemonDatabase.withTransaction {
-                if (loadType == REFRESH) {
-                    pokemonDao.deleteAllPokemon()
-                    pokemonRemoteKeyDao.deleteAllRemoteKeys()
-                }
+//                if (loadType == REFRESH) {
+//                    pokemonDao.deleteAllPokemon()
+//                    pokemonRemoteKeyDao.deleteAllRemoteKeys()
+//                }
                 val keys = response.map {
                     PokemonRemoteKeys(
                         id = it.id.toString(),
@@ -75,10 +74,8 @@ class PokemonRemoteMediator @Inject constructor(
                 }
                 pokemonRemoteKeyDao.addAllRemoteKeys(keys)
                 pokemonDao.addPokemons(response)
-
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
-
         } catch (e: Exception) {
             return MediatorResult.Error(e)
         }

@@ -4,10 +4,13 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.example.pokedex.datasource.model.pokemonAttributes.Attribute
 import com.example.pokedex.navigation.PokemonDetailScreenNavArgs
 import com.example.pokedex.screens.navArgs
 import com.example.pokedex.screens.pokemonDetail.domain.useCase.PokemonDetailUseCaseWrapper
 import com.example.pokedex.screens.pokemonDetail.presentation.event.PokemonDetailEvent
+import com.example.pokedex.screens.pokemonDetail.presentation.state.PokemonExtendedInfo
+import com.example.pokedex.screens.pokemonDetail.presentation.state.PokemonStats
 import com.example.pokedex.screens.pokemonDetail.state.ExpandedState
 import com.example.pokedex.screens.pokemonDetail.state.PokemonState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -63,8 +66,29 @@ class PokemonDetailVM @Inject constructor(
     private fun fetchPokemon(idOrName: String) {
         fetchJob?.cancel()
         fetchJob = CoroutineScope(Dispatchers.IO).launch {
-            useCase.getPokemon(idOrName = idOrName).also {
-                _pokemonState.value = pokemonState.value.copy(pokemon = it)
+            useCase.getPokemon(idOrName = idOrName).also { pokemon ->
+                _pokemonState.value = pokemonState.value.copy(
+                    pokemon = pokemon,
+                    info = PokemonExtendedInfo(
+                        abilities = pokemon.abilities.map { ability ->
+                            Attribute(name = ability.ability.name, url = ability.ability.url)
+                        }.sortedBy { it.name },
+                        moves = pokemon.moves.map { move ->
+                            Attribute(name = move.move.name, url = move.move.url)
+                        }.sortedBy { it.name },
+                        sprites = emptyList(), //TODO transform Sprites -> List<Attribute>
+                        location = emptyList(), //TODO transform String -> List<Attribute> make api call
+                        heldItems = pokemon.held_items.map { heldItem ->
+                            Attribute(name = heldItem.item.name, url = heldItem.item.url)
+                        }.sortedBy { it.name }
+                    ),
+                    stats = PokemonStats(
+                        health = pokemon.stats[0].base_stat,
+                        attack = pokemon.stats[1].base_stat,
+                        defense = pokemon.stats[2].base_stat,
+                        speed = pokemon.stats[5].base_stat
+                    )
+                )
             }
         }
     }
