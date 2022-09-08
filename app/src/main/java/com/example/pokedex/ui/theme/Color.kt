@@ -23,8 +23,8 @@ val LightNormal = Color(0xFF8E8E79)
 val Bug = Color(0xFF179A55)
 val LightBug = Color(0xFF37BA75)
 
-val Dark = Color(0xFF040706)
-val LightDark = Color(0xFF242726)
+val Dark = Color(0xFF242726)
+val LightDark = Color(0xFF444746)
 
 val Dragon = Color(0xFF378A94)
 val LightDragon = Color(0xFF57AAB4)

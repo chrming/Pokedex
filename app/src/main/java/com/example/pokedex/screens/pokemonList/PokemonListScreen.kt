@@ -28,46 +28,24 @@ fun PokemonListScreen(
     viewModel: PokemonListVM = hiltViewModel(),
     navigator: DestinationsNavigator,
 ) {
-    val pokemonListState = viewModel.pokemons.collectAsLazyPagingItems() //.pokemonListState.pokemonList.collectAsLazyPagingItems()
-    val filterState = viewModel.filterState
+    val pokemonListState =
+        viewModel.pokemons.collectAsLazyPagingItems() //.pokemonListState.pokemonList.collectAsLazyPagingItems()
+    val filterState = viewModel.filterState //TODO delete/change
 
-    Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(
-                shape = RectangleShape,
-                onClick = { viewModel.onEvent(PokemonListEvent.FilterEvent.ToggleFilterSection) }) {
-                when (filterState.isFilterSectionExpanded) {
-                    true -> {
-                        Icon(
-                            Icons.Default.ArrowDropUp,
-                            contentDescription = "Toggle filter section"
-                        )
-                    }
-                    false -> {
-                        Icon(
-                            Icons.Default.FilterAlt,
-                            contentDescription = "Toggle filter section"
-                        )
-                    }
-                }
-            }
-        }
+    Column(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            AnimatedVisibility(visible = true) {
-                FiltersSection(
-                    Modifier
-                )
-            }
-            PokemonLazyList(
-                modifier = Modifier.fillMaxSize(),
-                pokemonList = pokemonListState,
-                onItemClick = { pokemon ->
-                    navigator.navigate(PokemonDetailScreenDestination(pokemon.name))
-                }
+        AnimatedVisibility(visible = true) {
+            FiltersSection(
+                Modifier
             )
         }
+        PokemonLazyList(
+            modifier = Modifier.fillMaxSize(),
+            pokemonList = pokemonListState,
+            onItemClick = { pokemon ->
+                navigator.navigate(PokemonDetailScreenDestination(pokemon.name))
+            }
+        )
     }
 }

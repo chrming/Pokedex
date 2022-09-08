@@ -1,27 +1,22 @@
 package com.example.pokedex.screens.pokemonList.presentation.composable
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Error
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.SubcomposeAsyncImage
 import com.example.pokedex.datasource.model.Pokemon
 import com.example.pokedex.datasource.model.pokemonAttributes.Type
+import com.example.pokedex.screens.pokemonDetail.presentation.composables.PictureSection
+import com.example.pokedex.screens.pokemonDetail.presentation.composables.StatsSection
+import com.example.pokedex.screens.pokemonDetail.presentation.state.PokemonStats
 import com.example.pokedex.ui.theme.*
-import java.util.*
 
 
 //TODO manage error and loading with assets
@@ -34,184 +29,35 @@ fun PokemonListItem(
     pokemon: Pokemon,
     onClick: () -> Unit
 ) {
+    val pokemonStats = PokemonStats(
+        health = pokemon.stats[0].base_stat,
+        attack = pokemon.stats[1].base_stat,
+        defense = pokemon.stats[2].base_stat,
+        speed = pokemon.stats[5].base_stat,
+    )
     Card(
         modifier = modifier
-            .height(120.dp)
+            .wrapContentHeight()
             .fillMaxWidth()
             .border(1.dp, Black),
         onClick = onClick
     ) {
-        Box(
+        Row(
             modifier = Modifier
                 .fillMaxSize()
-                .background(
-                    Brush.linearGradient(
-                        colorListByType(pokemon.types[0])
-                    )
-                )
+                .background(Brush.linearGradient(colorListByType(pokemon.types[0])))
         ) {
-            Row(modifier = Modifier.fillMaxSize()) {
-                Box(
-                    contentAlignment = Alignment.BottomCenter
-                ) {
-                    SubcomposeAsyncImage(
-                        modifier = Modifier.background(colorByType(pokemon.types[0])),
-                        model = pokemon.sprites.other.officialArtwork?.front_default,
-                        contentDescription = null,
-                        loading = {
-                            CircularProgressIndicator()
-                        },
-                        error = {
-
-                            Icon(imageVector = Icons.Default.Error, contentDescription = null)
-                        }
-                    )
-                    Box() {
-                        Text(
-                            modifier = Modifier,
-                            text = pokemon.name.replaceFirstChar {
-                                if (it.isLowerCase()) it.titlecase(
-                                    Locale.getDefault()
-                                ) else it.toString()
-                            },
-                            style = PokemonTypography.body1,
-                            color = White,
-                            letterSpacing = 1.sp
-                        )
-                        Text(
-                            modifier = Modifier,
-                            text = pokemon.name.replaceFirstChar {
-                                if (it.isLowerCase()) it.titlecase(
-                                    Locale.getDefault()
-                                ) else it.toString()
-                            },
-                            style = PokemonTypography.h1,
-                            color = Black,
-                            letterSpacing = 1.sp
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.width(4.dp))
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.SpaceEvenly,
-                    horizontalAlignment = Alignment.Start
-                ) {
-                    Column(
-                        modifier = Modifier,
-                        verticalArrangement = Arrangement.SpaceAround,
-                        horizontalAlignment = Alignment.Start
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .width(300.dp)
-                                .padding(horizontal = 4.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Text(
-                                text = "HP",
-                                fontSize = 10.sp
-                            )
-                            LinearProgressIndicator(
-                                modifier = Modifier
-                                    .height(6.dp)
-                                    .border(1.dp, Black)
-                                    .shadow(5.dp),
-                                progress = pokemon.stats[0].base_stat.toFloat() / Pokemon.maxHp.toFloat(),
-                                color = Health
-                            )
-                            /*Text(
-                                text = "${pokemon.stats[0].base_stat} / ${Pokemon.maxHp}",
-                                fontSize = 12.sp
-                            )*/
-                        }
-                        Row(
-                            modifier = Modifier
-                                .width(300.dp)
-                                .padding(horizontal = 4.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Text(
-                                text = "ATK",
-                                fontSize = 10.sp
-                            )
-                            LinearProgressIndicator(
-                                modifier = Modifier
-                                    .height(6.dp)
-                                    .border(1.dp, Black)
-                                    .shadow(5.dp),
-                                progress = pokemon.stats[1].base_stat.toFloat() / Pokemon.maxAttack.toFloat(),
-                                color = Attack
-                            )
-                            /*Text(
-                                text = "${pokemon.stats[1].base_stat} / ${Pokemon.maxAttack}",
-                                fontSize = 12.sp
-                            )*/
-                        }
-                        Row(
-                            modifier = Modifier
-                                .width(300.dp)
-                                .padding(horizontal = 4.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Text(
-                                text = "DEF",
-                                fontSize = 10.sp
-                            )
-                            LinearProgressIndicator(
-                                modifier = Modifier
-                                    .height(6.dp)
-                                    .border(1.dp, Black)
-                                    .shadow(5.dp),
-                                progress = pokemon.stats[2].base_stat.toFloat() / Pokemon.maxDefense.toFloat(),
-                                color = Defense
-                            )
-                            /*Text(
-                                text = "${pokemon.stats[2].base_stat} / ${Pokemon.maxDefense}",
-                                fontSize = 12.sp
-                            )*/
-                        }
-                    }
-                    Row(
-                        modifier = Modifier
-                            .width(300.dp)
-                            .padding(horizontal = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = "TYPE",
-                            fontSize = 10.sp
-                        )
-                        Row() {
-                            pokemon.types.forEach {
-                                TextButton(
-                                    modifier = Modifier
-                                        .padding(2.dp)
-                                        .width(50.dp)
-                                        .height(20.dp),
-                                    onClick = {/*TODO filter by this chip*/ },
-                                    border = BorderStroke(1.dp, Black),
-                                    contentPadding = PaddingValues(2.dp),
-                                    colors = ButtonDefaults.buttonColors(colorByType(it))
-                                ) {
-                                    Text(
-                                        text = it.type.name.replaceFirstChar {
-                                            if (it.isLowerCase()) it.titlecase(
-                                                Locale.getDefault()
-                                            ) else it.toString()
-                                        },
-                                        fontSize = 10.sp
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            PictureSection(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(0.4f),
+                pokemonName = pokemon.name,
+                pokemonSpriteUrl = pokemon.sprites.other.officialArtwork?.front_default
+                    ?: "None",
+                pictureSize = 100.dp,
+                fontSize = 25.sp
+            )
+            StatsSection(pokemonStats = pokemonStats, pokemonTypes = pokemon.types)
         }
     }
 }

@@ -32,6 +32,7 @@ class PokemonRemoteMediator(
                 REFRESH -> {
                     Log.d("chm", "Refreshing")
                     val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
+                    Log.d("chm", "Remote keys: $remoteKeys")
                     remoteKeys?.nextPage?.minus(1) ?: 0
                 }
                 PREPEND -> {
